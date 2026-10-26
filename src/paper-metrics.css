@@ -1,0 +1,229 @@
+/**
+ * paper-metrics.css — Styles for PaperMetrics embeddable widgets & badges
+ */
+
+:root {
+  --pm-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --pm-bg-card: #ffffff;
+  --pm-border: #e2e8f0;
+  --pm-text: #1e293b;
+  --pm-text-muted: #64748b;
+  --pm-text-soft: #94a3b8;
+  --pm-cites-bg: #e0f2fe;
+  --pm-cites-text: #0369a1;
+  --pm-influential-bg: #fef3c7;
+  --pm-influential-text: #b45309;
+  --pm-ads-bg: #dbeafe;
+  --pm-ads-text: #1d4ed8;
+  --pm-biorxiv-bg: #dcfce7;
+  --pm-biorxiv-text: #15803d;
+  --pm-plos-bg: #ede9fe;
+  --pm-plos-text: #6d28d9;
+  --pm-zenodo-bg: #fae8ff;
+  --pm-zenodo-text: #86198f;
+  --pm-radius: 8px;
+  --pm-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --pm-bg-card: #0f172a;
+    --pm-border: #1e293b;
+    --pm-text: #f8fafc;
+    --pm-text-muted: #94a3b8;
+    --pm-text-soft: #64748b;
+    --pm-cites-bg: #082f49;
+    --pm-cites-text: #7dd3fc;
+    --pm-influential-bg: #451a03;
+    --pm-influential-text: #fcd34d;
+    --pm-ads-bg: #1e3a8a;
+    --pm-ads-text: #93c5fd;
+    --pm-biorxiv-bg: #064e3b;
+    --pm-biorxiv-text: #86efac;
+    --pm-plos-bg: #2e1065;
+    --pm-plos-text: #c4b5fd;
+    --pm-zenodo-bg: #4a044e;
+    --pm-zenodo-text: #f0abfc;
+    --pm-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Explicit data-theme support */
+[data-theme="dark"] {
+  --pm-bg-card: #0f172a;
+  --pm-border: #1e293b;
+  --pm-text: #f8fafc;
+  --pm-text-muted: #94a3b8;
+  --pm-text-soft: #64748b;
+  --pm-cites-bg: #082f49;
+  --pm-cites-text: #7dd3fc;
+  --pm-influential-bg: #451a03;
+  --pm-influential-text: #fcd34d;
+  --pm-ads-bg: #1e3a8a;
+  --pm-ads-text: #93c5fd;
+  --pm-biorxiv-bg: #064e3b;
+  --pm-biorxiv-text: #86efac;
+  --pm-plos-bg: #2e1065;
+  --pm-plos-text: #c4b5fd;
+  --pm-zenodo-bg: #4a044e;
+  --pm-zenodo-text: #f0abfc;
+}
+
+/* Inline Badges Layout */
+.pm-badges-container {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  vertical-align: middle;
+  font-family: var(--pm-font);
+  margin: 4px 0;
+}
+
+.pm-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: default;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  user-select: none;
+}
+
+.pm-badge:hover {
+  transform: translateY(-1px);
+}
+
+.pm-badge-citations { background: var(--pm-cites-bg); color: var(--pm-cites-text); }
+.pm-badge-influential { background: var(--pm-influential-bg); color: var(--pm-influential-text); font-weight: 600; }
+.pm-badge-ads { background: var(--pm-ads-bg); color: var(--pm-ads-text); }
+.pm-badge-biorxiv { background: var(--pm-biorxiv-bg); color: var(--pm-biorxiv-text); }
+.pm-badge-plos { background: var(--pm-plos-bg); color: var(--pm-plos-text); }
+.pm-badge-zenodo { background: var(--pm-zenodo-bg); color: var(--pm-zenodo-text); }
+
+.pm-badge-loading {
+  background: #f1f5f9;
+  color: #94a3b8;
+  font-style: italic;
+  font-size: 0.75rem;
+}
+.pm-badge-error {
+  background: #fee2e2;
+  color: #991b1b;
+  font-size: 0.75rem;
+}
+
+.pm-icon {
+  font-size: 0.85em;
+}
+
+/* Full Card Layout */
+.pm-card {
+  font-family: var(--pm-font);
+  background: var(--pm-bg-card);
+  border: 1px solid var(--pm-border);
+  border-radius: var(--pm-radius);
+  padding: 16px 20px;
+  box-shadow: var(--pm-shadow);
+  margin: 12px 0;
+  box-sizing: border-box;
+}
+
+.pm-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.pm-card-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--pm-text);
+  line-height: 1.35;
+  flex: 1;
+}
+
+.pm-card-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.pm-link-btn {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--pm-text-muted);
+  background: var(--pm-border);
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.pm-link-btn:hover {
+  color: var(--pm-text);
+  opacity: 0.85;
+}
+
+.pm-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.pm-card-metric {
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: rgba(241, 245, 249, 0.6);
+  border: 1px solid transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+  .pm-card-metric {
+    background: rgba(30, 41, 59, 0.5);
+  }
+}
+
+.pm-metric-val {
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 2px;
+}
+
+.pm-metric-lbl {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--pm-text);
+}
+
+.pm-metric-sub {
+  font-size: 0.7rem;
+  color: var(--pm-text-muted);
+  margin-top: 2px;
+}
+
+.pm-metric-cites .pm-metric-val { color: var(--pm-cites-text); }
+.pm-metric-influential .pm-metric-val { color: var(--pm-influential-text); }
+.pm-metric-ads .pm-metric-val { color: var(--pm-ads-text); }
+.pm-metric-biorxiv .pm-metric-val { color: var(--pm-biorxiv-text); }
+.pm-metric-plos .pm-metric-val { color: var(--pm-plos-text); }
+.pm-metric-zenodo .pm-metric-val { color: var(--pm-zenodo-text); }
+
+.pm-card-footer {
+  font-size: 0.72rem;
+  color: var(--pm-text-soft);
+  border-top: 1px solid var(--pm-border);
+  padding-top: 8px;
+  display: flex;
+  justify-content: space-between;
+}

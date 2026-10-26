@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PaperMetrics.js — Embeddable Scholarly Metrics Widget</title>
+  <link rel="stylesheet" href="src/paper-metrics.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+    .wrapper {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+    header {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: #eff6ff;
+      color: #2563eb;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      border: 1px solid #bfdbfe;
+    }
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin: 0 0 12px;
+    }
+    .subtitle {
+      font-size: 1.15rem;
+      color: #64748b;
+      max-width: 680px;
+      margin: 0 auto 24px;
+    }
+    .api-pill-list {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .api-pill {
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      color: #475569;
+      font-weight: 500;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 40px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    /* Live Playground Generator */
+    .generator-box {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+      margin-bottom: 36px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 6px;
+    }
+    .form-group input, .form-group select {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 8px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-family: inherit;
+    }
+    .form-group input:focus, .form-group select:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+    }
+    .code-preview-box {
+      background: #0f172a;
+      color: #f8fafc;
+      border-radius: 8px;
+      padding: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      position: relative;
+      margin-top: 14px;
+      overflow-x: auto;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #334155;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+    .copy-btn:hover { background: #475569; }
+
+    /* Demo List */
+    .paper-item {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 14px;
+      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.04);
+    }
+    .paper-title {
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+      color: #0f172a;
+    }
+    .paper-authors {
+      font-size: 0.86rem;
+      color: #64748b;
+      margin-bottom: 10px;
+    }
+
+    pre code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .instructions-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <span class="hero-badge">Open Science • Public APIs • Embeddable Widget</span>
+      <h1>PaperMetrics.js</h1>
+      <p class="subtitle">A drop-in web package & widget for academic personal sites to gracefully visualize paper citations, recent readership, and downloads.</p>
+      
+      <div class="api-pill-list">
+        <span class="api-pill">🪐 NASA ADS (90d reads)</span>
+        <span class="api-pill">📚 OpenAlex (Citations)</span>
+        <span class="api-pill">🔬 Semantic Scholar</span>
+        <span class="api-pill">🏛️ Crossref</span>
+        <span class="api-pill">🧬 Europe PMC</span>
+        <span class="api-pill">📄 bioRxiv</span>
+        <span class="api-pill">📊 PLOS COUNTER</span>
+        <span class="api-pill">💾 Zenodo</span>
+      </div>
+    </header>
+
+    <!-- Interactive Generator -->
+    <div class="generator-box">
+      <h2 style="font-size: 1.15rem; font-weight:700; margin-top:0; margin-bottom: 16px;">🛠️ Interactive Embed Generator</h2>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Paper Title</label>
+          <input type="text" id="genTitle" value="Longitudinal brain structure changes in Parkinson's disease" oninput="updateGenerator()">
+        </div>
+        <div class="form-group">
+          <label>DOI (Crossref / OpenAlex / PLOS)</label>
+          <input type="text" id="genDoi" value="10.1371/journal.pone.0295069" oninput="updateGenerator()">
+        </div>
+        <div class="form-group">
+          <label>arXiv ID (optional)</label>
+          <input type="text" id="genArxiv" placeholder="e.g. 2610.01889" oninput="updateGenerator()">
+        </div>
+        <div class="form-group">
+          <label>NASA ADS Bibcode (optional)</label>
+          <input type="text" id="genAds" value="2024PLoSO..1995069S" oninput="updateGenerator()">
+        </div>
+        <div class="form-group">
+          <label>Zenodo Record ID (optional)</label>
+          <input type="text" id="genZenodo" placeholder="e.g. 8301008" oninput="updateGenerator()">
+        </div>
+        <div class="form-group">
+          <label>Layout Style</label>
+          <select id="genLayout" onchange="updateGenerator()">
+            <option value="card">Card (Rich interactive box)</option>
+            <option value="badge">Badge (Compact inline pills)</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="font-weight: 600; font-size: 0.88rem; margin-bottom: 8px;">Live Preview:</div>
+      <div id="livePreviewContainer" style="margin-bottom: 16px;"></div>
+
+      <div style="font-weight: 600; font-size: 0.88rem; margin-bottom: 4px;">Embed Code:</div>
+      <div class="code-preview-box">
+        <button class="copy-btn" onclick="copySnippet()">Copy Snippet</button>
+        <code id="snippetCode"></code>
+      </div>
+    </div>
+
+    <!-- Live Examples -->
+    <h2 class="section-title">✨ Live Demos on Real Publications</h2>
+    
+    <div class="paper-item">
+      <div class="paper-title">Longitudinal brain structure changes in Parkinson’s disease: a replication study</div>
+      <div class="paper-authors">Andrzej Sokolowski, Nikhil Bhagwat, Yohan Chatelain, et al. • <em>PLOS ONE (2024)</em></div>
+      <paper-metrics
+        title="Longitudinal brain structure changes in Parkinson's disease: a replication study"
+        doi="10.1371/journal.pone.0295069"
+        ads="2024PLoSO..1995069S"
+        layout="badge">
+      </paper-metrics>
+    </div>
+
+    <div class="paper-item">
+      <div class="paper-title">Numerical Stability of DeepGOPlus Inference</div>
+      <div class="paper-authors">Ines Gonzalez Pepe, Yohan Chatelain, Gregory Kiar, Tristan Glatard • <em>PLOS ONE (2024)</em></div>
+      <paper-metrics
+        title="Numerical Stability of DeepGOPlus Inference"
+        doi="10.1371/journal.pone.0296725"
+        ads="2024PLoSO..1996725G"
+        ads-reads="269"
+        layout="badge">
+      </paper-metrics>
+    </div>
+
+    <div class="paper-item">
+      <div class="paper-title">Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2</div>
+      <div class="paper-authors">Yohan Chatelain, et al. • <em>arXiv (2026)</em></div>
+      <paper-metrics
+        title="Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2"
+        arxiv="2610.01889"
+        ads="2026arXiv261001889C"
+        ads-reads="831"
+        layout="badge">
+      </paper-metrics>
+    </div>
+
+    <div class="paper-item">
+      <div class="paper-title">Verificarlo: Floating-point precision and numerical variability toolkit</div>
+      <div class="paper-authors">Verificarlo maintainers • <em>Zenodo Software Release</em></div>
+      <paper-metrics
+        title="verificarlo/verificarlo: Verificarlo v1.0.0"
+        zenodo="8301008"
+        layout="badge">
+      </paper-metrics>
+    </div>
+
+    <!-- Quickstart Instructions -->
+    <h2 class="section-title">🚀 How to Embed on Any Website</h2>
+    <div class="instructions-card">
+      <p>Add the following two lines anywhere on your personal website (Jekyll, Hugo, plain HTML, or GitHub Pages):</p>
+      
+      <div class="code-preview-box" style="margin-bottom: 16px;">
+<code>&lt;!-- 1. Include CSS and JS in your &lt;head&gt; or before &lt;/body&gt; --&gt;
+&lt;link rel="stylesheet" href="https://yourusername.github.io/paper-metrics-widget/src/paper-metrics.css"&gt;
+&lt;script src="https://yourusername.github.io/paper-metrics-widget/src/paper-metrics.js" defer&gt;&lt;/script&gt;</code>
+      </div>
+
+      <p>Then place the Web Component or HTML tag in your publications list:</p>
+      <div class="code-preview-box">
+<code>&lt;!-- 2. Inline badge example --&gt;
+&lt;paper-metrics doi="10.1371/journal.pone.0295069" ads="2024PLoSO..1995069S" layout="badge"&gt;&lt;/paper-metrics&gt;
+
+&lt;!-- Or rich card view --&gt;
+&lt;paper-metrics doi="10.1371/journal.pone.0295069" layout="card"&gt;&lt;/paper-metrics&gt;</code>
+      </div>
+    </div>
+  </div>
+
+  <script src="src/paper-metrics.js"></script>
+  <script>
+    function updateGenerator() {
+      const title = document.getElementById('genTitle').value;
+      const doi = document.getElementById('genDoi').value;
+      const arxiv = document.getElementById('genArxiv').value;
+      const ads = document.getElementById('genAds').value;
+      const zenodo = document.getElementById('genZenodo').value;
+      const layout = document.getElementById('genLayout').value;
+
+      // Build tag
+      let attrs = [];
+      if (title) attrs.push(`title="${title}"`);
+      if (doi) attrs.push(`doi="${doi}"`);
+      if (arxiv) attrs.push(`arxiv="${arxiv}"`);
+      if (ads) attrs.push(`ads="${ads}"`);
+      if (zenodo) attrs.push(`zenodo="${zenodo}"`);
+      attrs.push(`layout="${layout}"`);
+
+      const snippet = `<paper-metrics ${attrs.join(' ')}></paper-metrics>`;
+      document.getElementById('snippetCode').innerText = snippet;
+
+      // Update preview
+      const preview = document.getElementById('livePreviewContainer');
+      preview.innerHTML = '';
+      const el = document.createElement('paper-metrics');
+      if (title) el.setAttribute('title', title);
+      if (doi) el.setAttribute('doi', doi);
+      if (arxiv) el.setAttribute('arxiv', arxiv);
+      if (ads) el.setAttribute('ads', ads);
+      if (zenodo) el.setAttribute('zenodo', zenodo);
+      el.setAttribute('layout', layout);
+      preview.appendChild(el);
+    }
+
+    function copySnippet() {
+      const txt = document.getElementById('snippetCode').innerText;
+      navigator.clipboard.writeText(txt).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.innerText = 'Copied!';
+        setTimeout(() => btn.innerText = 'Copy Snippet', 2000);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', updateGenerator);
+  </script>
+</body>
+</html>
