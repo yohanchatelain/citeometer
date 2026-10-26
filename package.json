@@ -7,9 +7,13 @@
   "style": "dist/citeometer.min.css",
   "jsdelivr": "dist/citeometer.min.js",
   "unpkg": "dist/citeometer.min.js",
+  "bin": {
+    "citeometer-snapshot": "scripts/fetch-snapshot.js"
+  },
   "files": [
     "dist",
     "src",
+    "scripts/fetch-snapshot.js",
     "README.md"
   ],
   "scripts": {
