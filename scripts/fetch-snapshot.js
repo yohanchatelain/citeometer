@@ -290,12 +290,32 @@ async function main() {
     }
   }
 
+  const resolvedOutputPath = path.resolve(process.cwd(), outputPath);
+
+  // A throttled or failing source must not make counts drop between runs: citation
+  // totals only grow, so keep the previous snapshot's value when it is higher.
+  if (fs.existsSync(resolvedOutputPath)) {
+    try {
+      const previous = JSON.parse(fs.readFileSync(resolvedOutputPath, 'utf8')).papers || {};
+      for (const [key, metrics] of Object.entries(papers)) {
+        const old = previous[key];
+        if (!old) continue;
+        for (const field of ['citations', 'influentialCitations']) {
+          if (typeof old[field] === 'number' && (metrics[field] === null || metrics[field] < old[field])) {
+            metrics[field] = old[field];
+          }
+        }
+      }
+    } catch (err) {
+      console.warn('[fetch-snapshot] Could not read previous snapshot:', err.message);
+    }
+  }
+
   const snapshotData = {
     generatedAt: new Date().toISOString(),
     papers: papers
   };
 
-  const resolvedOutputPath = path.resolve(process.cwd(), outputPath);
   const outputDir = path.dirname(resolvedOutputPath);
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });

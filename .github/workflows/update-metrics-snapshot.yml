@@ -23,6 +23,8 @@ jobs:
 
       - name: Fetch metrics snapshot
         run: node scripts/fetch-snapshot.js --input index.html demo --output dist/citeometer-snapshot.json
+        env:
+          S2_API_KEY: ${{ secrets.S2_API_KEY }}  # optional; avoids Semantic Scholar throttling
 
       - name: Commit and push snapshot if changed
         run: |
