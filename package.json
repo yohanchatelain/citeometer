@@ -1,6 +1,6 @@
 {
   "name": "citeometer",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Live citation, reads and download metrics for your papers: a zero-dependency web component for academic websites",
   "main": "dist/citeometer.min.js",
   "module": "dist/citeometer.esm.js",

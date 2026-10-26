@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T19:42:08.398Z",
+  "generatedAt": "2026-10-26T20:28:59.820Z",
   "papers": {
     "doi:10.1371/journal.pone.0295069": {
       "title": "Longitudinal brain structure changes in Parkinson's disease: a replication study",
@@ -10,19 +10,19 @@
       "github": null,
       "adsBibcode": "2024PLoSO..1995069S",
       "publishedDoi": null,
-      "isOa": false,
-      "oaStatus": null,
-      "citations": null,
+      "isOa": true,
+      "oaStatus": "gold",
+      "citations": 9,
       "influentialCitations": null,
-      "openAlexCitations": null,
-      "crossrefCitations": null,
+      "openAlexCitations": 8,
+      "crossrefCitations": 9,
       "dataCiteCitations": null,
-      "openCitationsCount": null,
-      "adsReads": null,
+      "openCitationsCount": 6,
+      "adsReads": 0,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": null,
-      "plosPdfs": null,
+      "plosTotal": 2282,
+      "plosPdfs": 1333,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -30,11 +30,58 @@
       "githubStars": null,
       "githubDownloads": null,
       "sources": {
+        "openAlex": {
+          "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
+          "citations": 8,
+          "isOa": true,
+          "oaStatus": "gold",
+          "year": 2024,
+          "countsByYear": [
+            {
+              "year": 2026,
+              "cited_by_count": 4
+            },
+            {
+              "year": 2025,
+              "cited_by_count": 2
+            },
+            {
+              "year": 2024,
+              "cited_by_count": 2
+            }
+          ],
+          "url": "https://doi.org/10.1371/journal.pone.0295069"
+        },
+        "crossref": {
+          "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
+          "citations": 9,
+          "referencesCount": 25,
+          "publisher": "Public Library of Science (PLoS)",
+          "url": "https://doi.org/10.1371/journal.pone.0295069"
+        },
+        "europePmc": {
+          "title": "Longitudinal brain structure changes in Parkinson's disease: A replication study.",
+          "citations": 8,
+          "pmcid": "PMC10830012",
+          "url": "https://europepmc.org/article/PMC/PMC10830012"
+        },
+        "plos": {
+          "total": 2282,
+          "pdf": 1333,
+          "html": 716,
+          "xml": 233,
+          "url": "https://doi.org/10.1371/journal.pone.0295069"
+        },
         "ads": {
-          "recentReads": null,
-          "citations": null,
+          "title": "Longitudinal brain structure changes in Parkinson's disease: A replication study",
+          "recentReads": 0,
+          "citations": 1,
           "bibcode": "2024PLoSO..1995069S",
           "url": "https://ui.adsabs.harvard.edu/abs/2024PLoSO..1995069S/metrics"
+        },
+        "openCitations": {
+          "citations": 6,
+          "url": "https://opencitations.net/index/api/v2/citations/doi:10.1371%2Fjournal.pone.0295069"
         }
       }
     },
@@ -47,19 +94,19 @@
       "github": null,
       "adsBibcode": "2024PLoSO..1995069S",
       "publishedDoi": null,
-      "isOa": false,
-      "oaStatus": null,
-      "citations": null,
+      "isOa": true,
+      "oaStatus": "gold",
+      "citations": 9,
       "influentialCitations": null,
-      "openAlexCitations": null,
-      "crossrefCitations": null,
+      "openAlexCitations": 8,
+      "crossrefCitations": 9,
       "dataCiteCitations": null,
-      "openCitationsCount": null,
-      "adsReads": null,
+      "openCitationsCount": 6,
+      "adsReads": 0,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": null,
-      "plosPdfs": null,
+      "plosTotal": 2282,
+      "plosPdfs": 1333,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -67,85 +114,58 @@
       "githubStars": null,
       "githubDownloads": null,
       "sources": {
+        "openAlex": {
+          "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
+          "citations": 8,
+          "isOa": true,
+          "oaStatus": "gold",
+          "year": 2024,
+          "countsByYear": [
+            {
+              "year": 2026,
+              "cited_by_count": 4
+            },
+            {
+              "year": 2025,
+              "cited_by_count": 2
+            },
+            {
+              "year": 2024,
+              "cited_by_count": 2
+            }
+          ],
+          "url": "https://doi.org/10.1371/journal.pone.0295069"
+        },
+        "crossref": {
+          "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
+          "citations": 9,
+          "referencesCount": 25,
+          "publisher": "Public Library of Science (PLoS)",
+          "url": "https://doi.org/10.1371/journal.pone.0295069"
+        },
+        "europePmc": {
+          "title": "Longitudinal brain structure changes in Parkinson's disease: A replication study.",
+          "citations": 8,
+          "pmcid": "PMC10830012",
+          "url": "https://europepmc.org/article/PMC/PMC10830012"
+        },
+        "plos": {
+          "total": 2282,
+          "pdf": 1333,
+          "html": 716,
+          "xml": 233,
+          "url": "https://doi.org/10.1371/journal.pone.0295069"
+        },
         "ads": {
-          "recentReads": null,
-          "citations": null,
+          "title": "Longitudinal brain structure changes in Parkinson's disease: A replication study",
+          "recentReads": 0,
+          "citations": 1,
           "bibcode": "2024PLoSO..1995069S",
           "url": "https://ui.adsabs.harvard.edu/abs/2024PLoSO..1995069S/metrics"
-        }
-      }
-    },
-    "doi:10.1371/journal.pone.0296725": {
-      "title": "Numerical Stability of DeepGOPlus Inference",
-      "doi": "10.1371/journal.pone.0296725",
-      "arxiv": null,
-      "biorxiv": null,
-      "zenodo": null,
-      "github": null,
-      "adsBibcode": "2024PLoSO..1996725G",
-      "publishedDoi": null,
-      "isOa": false,
-      "oaStatus": null,
-      "citations": null,
-      "influentialCitations": null,
-      "openAlexCitations": null,
-      "crossrefCitations": null,
-      "dataCiteCitations": null,
-      "openCitationsCount": null,
-      "adsReads": 269,
-      "biorxivPdfs": null,
-      "biorxivViews": null,
-      "plosTotal": null,
-      "plosPdfs": null,
-      "zenodoDownloads": null,
-      "zenodoViews": null,
-      "dataCiteDownloads": null,
-      "dataCiteViews": null,
-      "githubStars": null,
-      "githubDownloads": null,
-      "sources": {
-        "ads": {
-          "recentReads": 269,
-          "citations": null,
-          "bibcode": "2024PLoSO..1996725G",
-          "url": "https://ui.adsabs.harvard.edu/abs/2024PLoSO..1996725G/metrics"
-        }
-      }
-    },
-    "ads:2024PLoSO..1996725G": {
-      "title": "Numerical Stability of DeepGOPlus Inference",
-      "doi": "10.1371/journal.pone.0296725",
-      "arxiv": null,
-      "biorxiv": null,
-      "zenodo": null,
-      "github": null,
-      "adsBibcode": "2024PLoSO..1996725G",
-      "publishedDoi": null,
-      "isOa": false,
-      "oaStatus": null,
-      "citations": null,
-      "influentialCitations": null,
-      "openAlexCitations": null,
-      "crossrefCitations": null,
-      "dataCiteCitations": null,
-      "openCitationsCount": null,
-      "adsReads": 269,
-      "biorxivPdfs": null,
-      "biorxivViews": null,
-      "plosTotal": null,
-      "plosPdfs": null,
-      "zenodoDownloads": null,
-      "zenodoViews": null,
-      "dataCiteDownloads": null,
-      "dataCiteViews": null,
-      "githubStars": null,
-      "githubDownloads": null,
-      "sources": {
-        "ads": {
-          "recentReads": 269,
-          "citations": null,
-          "bibcode": "2024PLoSO..1996725G",
-          "url": "https://ui.adsabs.harvard.edu/abs/2024PLoSO..1996725G/metrics"
+        },
+        "openCitations": {
+          "citations": 6,
+          "url": "https://opencitations.net/index/api/v2/citations/doi:10.1371%2Fjournal.pone.0295069"
         }
       }
     },
@@ -158,13 +178,13 @@
       "github": null,
       "adsBibcode": "2026arXiv261001889C",
       "publishedDoi": null,
-      "isOa": false,
-      "oaStatus": null,
-      "citations": null,
+      "isOa": true,
+      "oaStatus": "green",
+      "citations": 0,
       "influentialCitations": null,
-      "openAlexCitations": null,
+      "openAlexCitations": 0,
       "crossrefCitations": null,
-      "dataCiteCitations": null,
+      "dataCiteCitations": 0,
       "openCitationsCount": null,
       "adsReads": 831,
       "biorxivPdfs": null,
@@ -178,11 +198,27 @@
       "githubStars": null,
       "githubDownloads": null,
       "sources": {
+        "openAlex": {
+          "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
+          "citations": 0,
+          "isOa": true,
+          "oaStatus": "green",
+          "year": 2026,
+          "countsByYear": [],
+          "url": "https://doi.org/10.48550/arxiv.2610.01889"
+        },
         "ads": {
           "recentReads": 831,
           "citations": null,
           "bibcode": "2026arXiv261001889C",
           "url": "https://ui.adsabs.harvard.edu/abs/2026arXiv261001889C/metrics"
+        },
+        "dataCite": {
+          "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
+          "citations": 0,
+          "views": 0,
+          "downloads": 0,
+          "url": "https://arxiv.org/abs/2610.01889"
         }
       }
     },
@@ -195,13 +231,13 @@
       "github": null,
       "adsBibcode": "2026arXiv261001889C",
       "publishedDoi": null,
-      "isOa": false,
-      "oaStatus": null,
-      "citations": null,
+      "isOa": true,
+      "oaStatus": "green",
+      "citations": 0,
       "influentialCitations": null,
-      "openAlexCitations": null,
+      "openAlexCitations": 0,
       "crossrefCitations": null,
-      "dataCiteCitations": null,
+      "dataCiteCitations": 0,
       "openCitationsCount": null,
       "adsReads": 831,
       "biorxivPdfs": null,
@@ -215,11 +251,199 @@
       "githubStars": null,
       "githubDownloads": null,
       "sources": {
+        "openAlex": {
+          "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
+          "citations": 0,
+          "isOa": true,
+          "oaStatus": "green",
+          "year": 2026,
+          "countsByYear": [],
+          "url": "https://doi.org/10.48550/arxiv.2610.01889"
+        },
         "ads": {
           "recentReads": 831,
           "citations": null,
           "bibcode": "2026arXiv261001889C",
           "url": "https://ui.adsabs.harvard.edu/abs/2026arXiv261001889C/metrics"
+        },
+        "dataCite": {
+          "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
+          "citations": 0,
+          "views": 0,
+          "downloads": 0,
+          "url": "https://arxiv.org/abs/2610.01889"
+        }
+      }
+    },
+    "doi:10.1371/journal.pone.0296725": {
+      "title": "Numerical Stability of DeepGOPlus Inference",
+      "doi": "10.1371/journal.pone.0296725",
+      "arxiv": null,
+      "biorxiv": null,
+      "zenodo": null,
+      "github": null,
+      "adsBibcode": "2024PLoSO..1996725G",
+      "publishedDoi": null,
+      "isOa": true,
+      "oaStatus": "gold",
+      "citations": 4,
+      "influentialCitations": 0,
+      "openAlexCitations": 2,
+      "crossrefCitations": 2,
+      "dataCiteCitations": null,
+      "openCitationsCount": 1,
+      "adsReads": 269,
+      "biorxivPdfs": null,
+      "biorxivViews": null,
+      "plosTotal": 1943,
+      "plosPdfs": 1314,
+      "zenodoDownloads": null,
+      "zenodoViews": null,
+      "dataCiteDownloads": null,
+      "dataCiteViews": null,
+      "githubStars": null,
+      "githubDownloads": null,
+      "sources": {
+        "semanticScholar": {
+          "title": "Numerical stability of DeepGOPlus inference",
+          "citations": 4,
+          "influentialCitations": 0,
+          "year": 2022,
+          "url": "https://www.semanticscholar.org/paper/30d63561bc582cded3e6cd9c79491608ed0a7669"
+        },
+        "openAlex": {
+          "title": "Numerical stability of DeepGOPlus inference",
+          "citations": 2,
+          "isOa": true,
+          "oaStatus": "gold",
+          "year": 2024,
+          "countsByYear": [
+            {
+              "year": 2026,
+              "cited_by_count": 1
+            },
+            {
+              "year": 2024,
+              "cited_by_count": 1
+            }
+          ],
+          "url": "https://doi.org/10.1371/journal.pone.0296725"
+        },
+        "crossref": {
+          "title": "Numerical stability of DeepGOPlus inference",
+          "citations": 2,
+          "referencesCount": 58,
+          "publisher": "Public Library of Science (PLoS)",
+          "url": "https://doi.org/10.1371/journal.pone.0296725"
+        },
+        "europePmc": {
+          "title": "Numerical stability of DeepGOPlus inference.",
+          "citations": 0,
+          "pmcid": "PMC10824456",
+          "url": "https://europepmc.org/article/PMC/PMC10824456"
+        },
+        "plos": {
+          "total": 1943,
+          "pdf": 1314,
+          "html": 351,
+          "xml": 278,
+          "url": "https://doi.org/10.1371/journal.pone.0296725"
+        },
+        "ads": {
+          "recentReads": 269,
+          "citations": null,
+          "bibcode": "2024PLoSO..1996725G",
+          "url": "https://ui.adsabs.harvard.edu/abs/2024PLoSO..1996725G/metrics"
+        },
+        "openCitations": {
+          "citations": 1,
+          "url": "https://opencitations.net/index/api/v2/citations/doi:10.1371%2Fjournal.pone.0296725"
+        }
+      }
+    },
+    "ads:2024PLoSO..1996725G": {
+      "title": "Numerical Stability of DeepGOPlus Inference",
+      "doi": "10.1371/journal.pone.0296725",
+      "arxiv": null,
+      "biorxiv": null,
+      "zenodo": null,
+      "github": null,
+      "adsBibcode": "2024PLoSO..1996725G",
+      "publishedDoi": null,
+      "isOa": true,
+      "oaStatus": "gold",
+      "citations": 4,
+      "influentialCitations": 0,
+      "openAlexCitations": 2,
+      "crossrefCitations": 2,
+      "dataCiteCitations": null,
+      "openCitationsCount": 1,
+      "adsReads": 269,
+      "biorxivPdfs": null,
+      "biorxivViews": null,
+      "plosTotal": 1943,
+      "plosPdfs": 1314,
+      "zenodoDownloads": null,
+      "zenodoViews": null,
+      "dataCiteDownloads": null,
+      "dataCiteViews": null,
+      "githubStars": null,
+      "githubDownloads": null,
+      "sources": {
+        "semanticScholar": {
+          "title": "Numerical stability of DeepGOPlus inference",
+          "citations": 4,
+          "influentialCitations": 0,
+          "year": 2022,
+          "url": "https://www.semanticscholar.org/paper/30d63561bc582cded3e6cd9c79491608ed0a7669"
+        },
+        "openAlex": {
+          "title": "Numerical stability of DeepGOPlus inference",
+          "citations": 2,
+          "isOa": true,
+          "oaStatus": "gold",
+          "year": 2024,
+          "countsByYear": [
+            {
+              "year": 2026,
+              "cited_by_count": 1
+            },
+            {
+              "year": 2024,
+              "cited_by_count": 1
+            }
+          ],
+          "url": "https://doi.org/10.1371/journal.pone.0296725"
+        },
+        "crossref": {
+          "title": "Numerical stability of DeepGOPlus inference",
+          "citations": 2,
+          "referencesCount": 58,
+          "publisher": "Public Library of Science (PLoS)",
+          "url": "https://doi.org/10.1371/journal.pone.0296725"
+        },
+        "europePmc": {
+          "title": "Numerical stability of DeepGOPlus inference.",
+          "citations": 0,
+          "pmcid": "PMC10824456",
+          "url": "https://europepmc.org/article/PMC/PMC10824456"
+        },
+        "plos": {
+          "total": 1943,
+          "pdf": 1314,
+          "html": 351,
+          "xml": 278,
+          "url": "https://doi.org/10.1371/journal.pone.0296725"
+        },
+        "ads": {
+          "recentReads": 269,
+          "citations": null,
+          "bibcode": "2024PLoSO..1996725G",
+          "url": "https://ui.adsabs.harvard.edu/abs/2024PLoSO..1996725G/metrics"
+        },
+        "openCitations": {
+          "citations": 1,
+          "url": "https://opencitations.net/index/api/v2/citations/doi:10.1371%2Fjournal.pone.0296725"
         }
       }
     },

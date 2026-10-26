@@ -605,4 +605,43 @@ describe('Citeometer Test Suite', () => {
       assert.ok(el.innerHTML.includes('1.2k release downloads'), 'Must render formatted GitHub release downloads');
     });
   });
+
+  // =========================================================================
+  // 10. bioRxiv usage scraping (server-side) and hide-zero rendering
+  // =========================================================================
+  describe('bioRxiv usage & hide-zero', () => {
+    it('sums lifetime views and PDF downloads from the bioRxiv article-metrics table', async () => {
+      setFetchMock(async (url) => {
+        if (url.includes('api.biorxiv.org/details/biorxiv/')) {
+          return mockJsonResponse({ collection: [{ title: 'Usage test', doi: '10.64898/2026.01.01.000001', version: '2', server: 'bioRxiv', published: 'NA' }] });
+        }
+        if (url.includes('www.biorxiv.org/content/10.64898/2026.01.01.000001v2.article-metrics')) {
+          const html = '<table class="highwire-stats sticky-enabled"><thead><tr><th></th><th>Abstract</th><th>Full</th><th>Pdf</th></tr></thead><tbody>'
+            + '<tr class="odd"><td>Jan 2026</td><td>100</td><td>10</td><td>40</td></tr>'
+            + '<tr class="even"><td>Feb 2026</td><td>50</td><td>5</td><td>20</td></tr></tbody></table>';
+          return { ok: true, status: 200, text: async () => html, json: async () => ({}) };
+        }
+        return mockJsonResponse({}, 404);
+      });
+
+      const results = await Citeometer.aggregateMetrics({ biorxiv: '10.64898/2026.01.01.000001' });
+      assert.strictEqual(results.biorxivPdfs, 60);
+      assert.strictEqual(results.biorxivViews, 165);
+    });
+
+    it('omits zero-valued badges when hide-zero is set, and renders nothing if all are zero', async () => {
+      setFetchMock(async (url) => {
+        if (url.includes('api.openalex.org')) return mockJsonResponse({ cited_by_count: 0 });
+        return mockJsonResponse({}, 404);
+      });
+
+      const el = createMockElement({}, 'DIV');
+      await Citeometer.render(el, { doi: '10.1000/zero-test', layout: 'badge', hideZero: 'true' });
+      assert.strictEqual(el.innerHTML, '');
+
+      const el2 = createMockElement({}, 'DIV');
+      await Citeometer.render(el2, { doi: '10.1000/zero-test-2', layout: 'badge' });
+      assert.ok(el2.innerHTML.includes('pm-badge-citations'), 'Zero citations still shown by default');
+    });
+  });
 });

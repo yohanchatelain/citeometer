@@ -8,7 +8,7 @@ In your site's `<head>`:
 
 ```html
 <!-- Citeometer (styles are bundled) -->
-<script src="https://cdn.jsdelivr.net/gh/yohanchatelain/citeometer@v1.0.0/dist/citeometer.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/yohanchatelain/citeometer@v1.1.0/dist/citeometer.min.js" defer></script>
 ```
 
 To self-host instead, copy `dist/citeometer.min.js` to `assets/js/` and point the `src` at it.

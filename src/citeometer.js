@@ -40,12 +40,29 @@
     snapshotUrl: null,
     snapshotData: null,
     lazy: false,
-    shadowDom: false
+    shadowDom: false,
+    hideZero: false
   };
+
+  // NASA ADS and bioRxiv usage pages do not send CORS headers, so they can only be
+  // queried server-side (scripts/fetch-snapshot.js). Browsers read them from a snapshot.
+  const IS_BROWSER = typeof window !== 'undefined' && typeof window.document !== 'undefined';
+
+  // Site-wide options from the loading <script> tag, e.g.
+  // <script src="citeometer.min.js" data-snapshot-url="/snapshot.json" data-hide-zero="true">
+  (function readScriptConfig() {
+    if (typeof document === 'undefined' || !document.currentScript || !document.currentScript.dataset) return;
+    const ds = document.currentScript.dataset;
+    if (ds.snapshotUrl) globalConfig.snapshotUrl = ds.snapshotUrl;
+    if (ds.mailto) globalConfig.mailto = ds.mailto;
+    if (ds.hideZero !== undefined) globalConfig.hideZero = ds.hideZero !== 'false';
+    if (ds.lazy !== undefined) globalConfig.lazy = ds.lazy !== 'false';
+  })();
 
   // In-flight request deduplication map
   const inFlightRequests = new Map();
   let snapshotPromise = null;
+  let adsTokenPromise = null;
 
   // Helper: Cache get/set
   function getCached(key) {
@@ -389,8 +406,11 @@
         const collection = data.collection;
         if (!Array.isArray(collection) || collection.length === 0) return null;
         const latest = collection[collection.length - 1];
+        const usage = IS_BROWSER ? null : await fetchBiorxivUsage(doi, latest.version, latest.server);
         return {
           title: latest.title || null,
+          pdfs: usage ? usage.pdfs : null,
+          views: usage ? usage.views : null,
           doi: latest.doi || doi,
           publishedDoi: latest.published && latest.published !== 'NA' ? latest.published : null,
           versions: collection.length,
@@ -401,6 +421,33 @@
         return null;
       }
     });
+  }
+
+  // Lifetime usage from the bioRxiv "Metrics" tab (HTML table: Abstract | Full | Pdf per month)
+  async function fetchBiorxivUsage(doi, version, server) {
+    try {
+      const host = /medrxiv/i.test(server || '') ? 'www.medrxiv.org' : 'www.biorxiv.org';
+      const url = `https://${host}/content/${doi}v${version || 1}.article-metrics`;
+      const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0 (citeometer snapshot)' } });
+      if (!res || !res.ok) return null;
+      const html = await res.text();
+      const start = html.indexOf('<table class="highwire-stats');
+      if (start === -1) return null;
+      const table = html.slice(start, html.indexOf('</table>', start));
+      let views = 0;
+      let pdfs = 0;
+      let rows = 0;
+      for (const row of table.split(/<tr[\s>]/i).slice(1)) {
+        const cells = [...row.matchAll(/<td[^>]*>([\s\S]*?)<\/td>/gi)].map(m => parseInt(m[1].replace(/<[^>]+>|[,\s]/g, ''), 10));
+        if (cells.length < 4 || cells.slice(1, 4).some(n => !Number.isFinite(n))) continue;
+        views += cells[1] + cells[2];
+        pdfs += cells[3];
+        rows++;
+      }
+      return rows > 0 ? { views, pdfs } : null;
+    } catch (err) {
+      return null;
+    }
   }
 
   async function fetchAds(opts) {
@@ -417,19 +464,33 @@
         url: adsUrl
       };
     }
-    if (!bibcode) return null;
-    const cacheKey = `ads_${bibcode}`;
+    if (IS_BROWSER) return bibcode ? { recentReads: null, citations: null, bibcode, url: adsUrl } : null;
+
+    // Server-side, papers without a bibcode are looked up by DOI or arXiv ID
+    let adsQuery = null;
+    if (bibcode) adsQuery = `bibcode:${bibcode}`;
+    else if (opts.doi) adsQuery = `doi:"${opts.doi}"`;
+    else if (opts.arxiv) adsQuery = `arxiv:${opts.arxiv}`;
+    if (!adsQuery) return null;
+    const cacheKey = `ads_${adsQuery}`;
     const cached = getCached(cacheKey);
     if (cached) return cached;
 
     try {
-      const bootRes = await fetch('https://ui.adsabs.harvard.edu/v1/accounts/bootstrap');
-      if (!bootRes || !bootRes.ok) return { recentReads: null, citations: null, bibcode, url: adsUrl };
-      const boot = await bootRes.json();
-      const token = boot.access_token;
-      if (!token) return { recentReads: null, citations: null, bibcode, url: adsUrl };
+      // One anonymous ADS token per process is enough
+      if (!adsTokenPromise) {
+        adsTokenPromise = fetch('https://ui.adsabs.harvard.edu/v1/accounts/bootstrap')
+          .then(r => (r && r.ok ? r.json() : null))
+          .then(boot => (boot && boot.access_token) || null)
+          .catch(() => null);
+      }
+      const token = await adsTokenPromise;
+      if (!token) {
+        adsTokenPromise = null;
+        return { recentReads: null, citations: null, bibcode, url: adsUrl };
+      }
 
-      const qUrl = `https://api.adsabs.harvard.edu/v1/search/query?q=bibcode:${encodeURIComponent(bibcode)}&fl=read_count,citation_count,bibcode,title`;
+      const qUrl = `https://api.adsabs.harvard.edu/v1/search/query?q=${encodeURIComponent(adsQuery)}&fl=read_count,citation_count,bibcode,title`;
       const res = await fetch(qUrl, { headers: { Authorization: `Bearer ${token}` } });
       if (!res || !res.ok) return { recentReads: null, citations: null, bibcode, url: adsUrl };
       const data = await res.json();
@@ -670,6 +731,8 @@
     }
     if (bxv.status === 'fulfilled' && bxv.value) {
       results.sources.biorxiv = bxv.value;
+      if (results.biorxivPdfs === null && typeof bxv.value.pdfs === 'number') results.biorxivPdfs = bxv.value.pdfs;
+      if (results.biorxivViews === null && typeof bxv.value.views === 'number') results.biorxivViews = bxv.value.views;
       if (bxv.value.publishedDoi) {
         results.publishedDoi = bxv.value.publishedDoi;
         // Preprint-to-published journal link: merge citations from published journal DOI if different
@@ -801,14 +864,15 @@
   }
 
   // HTML Renderers
-  function renderBadge(metrics) {
+  function renderBadge(metrics, opts = {}) {
     const pills = [];
+    const show = (n) => n !== null && n !== undefined && (!opts.hideZero || n > 0);
     const breakdown = getCitationBreakdown(metrics);
     const breakdownTooltip = breakdown.length > 0
       ? 'Citations — ' + breakdown.map(b => `${b.name}: ${b.count}`).join(' | ')
       : 'Citations across OpenAlex / Semantic Scholar / Crossref';
 
-    if (metrics.citations !== null) {
+    if (show(metrics.citations)) {
       pills.push(`
         <span class="pm-badge pm-badge-citations" title="${escapeHtml(breakdownTooltip)}">
           ${icon('cites')}
@@ -835,7 +899,7 @@
       `);
     }
 
-    if (metrics.biorxivPdfs !== null) {
+    if (show(metrics.biorxivPdfs)) {
       pills.push(`
         <span class="pm-badge pm-badge-biorxiv" title="bioRxiv Cumulative PDF Downloads">
           ${icon('file')}
@@ -844,7 +908,7 @@
       `);
     }
 
-    if (metrics.plosPdfs !== null) {
+    if (show(metrics.plosPdfs)) {
       pills.push(`
         <span class="pm-badge pm-badge-plos" title="PLOS COUNTER PDF Downloads">
           ${icon('download')}
@@ -853,7 +917,7 @@
       `);
     }
 
-    if (metrics.zenodoDownloads !== null) {
+    if (show(metrics.zenodoDownloads)) {
       pills.push(`
         <span class="pm-badge pm-badge-zenodo" title="Zenodo Software/Dataset Downloads">
           ${icon('archive')}
@@ -872,29 +936,30 @@
     }
 
     if (pills.length === 0) {
-      return `<span class="pm-badge pm-badge-loading">No public metrics found</span>`;
+      return opts.hideZero ? '' : `<span class="pm-badge pm-badge-loading">No public metrics found</span>`;
     }
 
     return `<div class="pm-badges-container">${pills.join('')}</div>`;
   }
 
-  function renderCompact(metrics) {
+  function renderCompact(metrics, opts = {}) {
     const parts = [];
-    if (metrics.citations !== null) {
+    const show = (n) => n !== null && n !== undefined && (!opts.hideZero || n > 0);
+    if (show(metrics.citations)) {
       parts.push(`<span class="pm-compact-item" title="Total Citations">${icon('cites')}<strong>${formatNum(metrics.citations)}</strong></span>`);
     }
     if (metrics.adsReads !== null && metrics.adsReads > 0) {
       parts.push(`<span class="pm-compact-item" title="NASA ADS 90-day Reads">${icon('reads')}<strong>${formatNum(metrics.adsReads)}</strong></span>`);
     }
     const downloads = metrics.plosPdfs ?? metrics.biorxivPdfs ?? metrics.zenodoDownloads ?? metrics.dataCiteDownloads ?? metrics.githubDownloads;
-    if (downloads !== null && downloads !== undefined) {
+    if (show(downloads)) {
       parts.push(`<span class="pm-compact-item" title="Downloads">${icon('download')}<strong>${formatNum(downloads)}</strong></span>`);
     }
     if (metrics.githubStars !== null && metrics.githubStars > 0) {
       parts.push(`<span class="pm-compact-item" title="GitHub Stars">${icon('repo')}<strong>${formatNum(metrics.githubStars)}</strong></span>`);
     }
     if (parts.length === 0) {
-      return `<span class="pm-badge pm-badge-loading">No public metrics found</span>`;
+      return opts.hideZero ? '' : `<span class="pm-badge pm-badge-loading">No public metrics found</span>`;
     }
     return `<span class="pm-compact-pill">${parts.join('<span class="pm-compact-sep">·</span>')}</span>`;
   }
@@ -1055,6 +1120,7 @@
       snapshotUrl: getAttr('snapshot-url'),
       lazy: getAttr('lazy'),
       shadow: getAttr('shadow'),
+      hideZero: getAttr('hide-zero'),
       layout: getAttr('layout') || 'badge'
     };
   }
@@ -1134,10 +1200,10 @@
         if (el._pmRenderId !== renderId) return; // Superseded by a newer render call
         if (layout === 'card') {
           mount.innerHTML = renderCard(data);
-        } else if (layout === 'compact') {
-          mount.innerHTML = renderCompact(data);
         } else {
-          mount.innerHTML = renderBadge(data);
+          const hz = resolvedConfig.hideZero;
+          const opts = { hideZero: hz === true || hz === '' || hz === 'true' || (hz == null && globalConfig.hideZero) };
+          mount.innerHTML = layout === 'compact' ? renderCompact(data, opts) : renderBadge(data, opts);
         }
       } catch (err) {
         if (el._pmRenderId !== renderId) return;
@@ -1161,7 +1227,7 @@
         return [
           'title', 'doi', 'arxiv', 'biorxiv', 'biorxiv-pdfs',
           'biorxiv-views', 'zenodo', 'plos-doi', 'github', 'ads', 'ads-bibcode',
-          'ads-reads', 'mailto', 'snapshot-url', 'lazy', 'shadow', 'layout'
+          'ads-reads', 'mailto', 'snapshot-url', 'lazy', 'shadow', 'hide-zero', 'layout'
         ];
       }
 

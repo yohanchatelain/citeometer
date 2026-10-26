@@ -25,8 +25,8 @@ Curated from public academic APIs (including GitHub `awesome-public-apis`, `awes
 | **DataCite** | `api.datacite.org/dois` | Dataset/Software Citations, Views, Downloads | ❌ No (CORS enabled) |
 | **OpenCitations** | `opencitations.net/index/api/v2` | Open CC0 DOI Citation Counts | ❌ No (CORS enabled) |
 | **GitHub** | `api.github.com/repos` | Repository Stars & Release Asset Downloads | ❌ No (CORS enabled) |
-| **NASA ADS** | `api.adsabs.harvard.edu` | Recent 90-day read counts, ADS citations | ❌ No (Anonymous session / Snapshot) |
-| **bioRxiv** | `api.biorxiv.org/details` | Preprint metadata, Published DOI linkage, PDFs | ❌ No (CORS enabled) |
+| **NASA ADS** | `api.adsabs.harvard.edu` | Recent 90-day read counts, ADS citations | ❌ No, but **snapshot only** (no CORS) |
+| **bioRxiv** | `api.biorxiv.org` + article metrics page | Published DOI linkage (live); PDF downloads & views (**snapshot only**) | ❌ No |
 
 ---
 
@@ -37,7 +37,7 @@ Curated from public academic APIs (including GitHub `awesome-public-apis`, `awes
 Add one script tag to your HTML `<head>`. The bundle injects its own styles:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/yohanchatelain/citeometer@v1.0.0/dist/citeometer.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/yohanchatelain/citeometer@v1.1.0/dist/citeometer.min.js" defer></script>
 ```
 
 Prefer to load the stylesheet yourself? Use `dist/citeometer.min.css` alongside `src/citeometer.js`.
@@ -95,9 +95,54 @@ Provide whatever identifiers you have for your paper:
 | `mailto` | Polite-pool contact email for OpenAlex / Crossref | `you@university.edu` |
 | `snapshot-url` | Static JSON snapshot URL for offline/CORS fallback | `dist/citeometer-snapshot.json` |
 | `lazy` | Defer API requests until scrolled into view (`true`/`false`) | `true` |
+| `hide-zero` | Hide badges whose value is 0 (badge & compact layouts) | `true` |
 | `shadow` | Render inside an isolated Shadow DOM root (`true`/`false`) | `true` |
 | `layout` | Layout style (`badge`, `card`, or `compact`) | `badge` (default) |
 | `title` | Optional title override (auto-fetched if omitted) | `My Research Paper` |
+
+---
+
+## 📦 Snapshots: NASA ADS reads & bioRxiv downloads
+
+NASA ADS and bioRxiv usage pages do not allow cross-origin requests, so browsers cannot query them directly. Instead, `scripts/fetch-snapshot.js` scans your pages for `<cite-o-meter>` tags, queries **every** source server-side (ADS is looked up by bibcode, DOI or arXiv ID), and writes one JSON file. The widget merges it with live data.
+
+```bash
+node scripts/fetch-snapshot.js --input _pages/publications.md --output assets/citeometer-snapshot.json
+```
+
+Point the widget at it once, on the script tag. Site-wide options are read from `data-*` attributes:
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/yohanchatelain/citeometer@v1.1.0/dist/citeometer.min.js"
+        data-snapshot-url="/assets/citeometer-snapshot.json"
+        data-hide-zero="true" data-lazy="true" defer></script>
+```
+
+To refresh it daily on GitHub Pages, add this workflow to your site repository (`.github/workflows/citeometer.yml`):
+
+```yaml
+name: Update Citeometer snapshot
+on:
+  schedule: [{ cron: '0 6 * * *' }]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with: { repository: yohanchatelain/citeometer, ref: v1.1.0, path: .citeometer }
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: node .citeometer/scripts/fetch-snapshot.js --input _pages --output assets/citeometer-snapshot.json
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/citeometer-snapshot.json
+          git diff --staged --quiet || (git commit -m "Update Citeometer snapshot" && git push)
+```
 
 ---
 
