@@ -1,9 +1,12 @@
-# PaperMetrics.js 📊
+# Citeometer
 
-> A lightweight, zero-dependency embeddable JavaScript widget and Web Component to gracefully display scholarly publication metrics (citations, recent reads, PDF downloads, and views) on personal academic websites and GitHub Pages.
+> How far has your paper travelled? A lightweight, zero-dependency embeddable JavaScript widget and Web Component to gracefully display scholarly publication metrics (citations, recent reads, PDF downloads, and views) on personal academic websites and GitHub Pages.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Zero Dependency](https://img.shields.io/badge/dependencies-0-success.svg)](#)
+[![Live demo](https://img.shields.io/badge/demo-live-1d5fbf.svg)](https://yohanchatelain.github.io/citeometer/)
+
+**Live demo and embed generator:** https://yohanchatelain.github.io/citeometer/
 
 ---
 
@@ -19,8 +22,11 @@ Curated from public academic APIs (including GitHub `awesome-public-apis`, `awes
 | **Europe PMC** | `ebi.ac.uk/europepmc/webservices` | Citations, PubMed Central links | ❌ No (CORS enabled) |
 | **PLOS COUNTER** | `counter.plos.org/api/v1.0/stats` | COUNTER 5 HTML views, PDF downloads, Total | ❌ No (CORS enabled) |
 | **Zenodo** | `zenodo.org/api/records` | Software & Dataset Downloads & Views | ❌ No (CORS enabled) |
-| **NASA ADS** | `api.adsabs.harvard.edu` | Recent 90-day read counts, ADS citations | ❌ No (Anonymous session support) |
-| **bioRxiv** | Article usage metrics | Abstract views, Full-text, PDF downloads | ❌ No |
+| **DataCite** | `api.datacite.org/dois` | Dataset/Software Citations, Views, Downloads | ❌ No (CORS enabled) |
+| **OpenCitations** | `opencitations.net/index/api/v2` | Open CC0 DOI Citation Counts | ❌ No (CORS enabled) |
+| **GitHub** | `api.github.com/repos` | Repository Stars & Release Asset Downloads | ❌ No (CORS enabled) |
+| **NASA ADS** | `api.adsabs.harvard.edu` | Recent 90-day read counts, ADS citations | ❌ No (Anonymous session / Snapshot) |
+| **bioRxiv** | `api.biorxiv.org/details` | Preprint metadata, Published DOI linkage, PDFs | ❌ No (CORS enabled) |
 
 ---
 
@@ -28,43 +34,46 @@ Curated from public academic APIs (including GitHub `awesome-public-apis`, `awes
 
 ### 1. Include the Library
 
-Add the stylesheet and script to your HTML head or before `</body>`:
+Add one script tag to your HTML `<head>`. The bundle injects its own styles:
 
 ```html
-<link rel="stylesheet" href="https://yourusername.github.io/paper-metrics-widget/src/paper-metrics.css">
-<script src="https://yourusername.github.io/paper-metrics-widget/src/paper-metrics.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/yohanchatelain/citeometer@v1.0.0/dist/citeometer.min.js" defer></script>
 ```
 
-### 2. Use the Custom Web Component `<paper-metrics>`
+Prefer to load the stylesheet yourself? Use `dist/citeometer.min.css` alongside `src/citeometer.js`.
+
+### 2. Use the Custom Web Component `<cite-o-meter>`
+
+(The legacy `<paper-metrics>` tag, `.paper-metrics` class and `window.PaperMetrics` global still work as aliases.)
 
 Provide whatever identifiers you have for your paper:
 
 #### Compact Inline Badge (for publication lists)
 ```html
-<paper-metrics 
+<cite-o-meter 
   doi="10.1371/journal.pone.0295069" 
   ads="2024PLoSO..1995069S" 
   layout="badge">
-</paper-metrics>
+</cite-o-meter>
 ```
 
 #### Rich Interactive Card
 ```html
-<paper-metrics 
+<cite-o-meter 
   title="Longitudinal brain structure changes in Parkinson's disease: a replication study"
   doi="10.1371/journal.pone.0295069" 
   ads="2024PLoSO..1995069S"
   layout="card">
-</paper-metrics>
+</cite-o-meter>
 ```
 
 #### Software / Dataset with Zenodo
 ```html
-<paper-metrics 
+<cite-o-meter 
   title="Verificarlo: Floating-point precision and numerical variability toolkit"
   zenodo="8301008" 
   layout="badge">
-</paper-metrics>
+</cite-o-meter>
 ```
 
 ---
@@ -73,14 +82,39 @@ Provide whatever identifiers you have for your paper:
 
 | Attribute | Description | Example |
 | :--- | :--- | :--- |
-| `doi` | Digital Object Identifier | `10.1371/journal.pone.0295069` |
-| `arxiv` | arXiv identifier | `2610.01889` |
+| `doi` | Digital Object Identifier (or DOI URL) | `10.1371/journal.pone.0295069` |
+| `arxiv` | arXiv identifier (or arXiv URL) | `2610.01889` |
 | `ads` / `ads-bibcode` | NASA ADS bibcode | `2024PLoSO..1995069S` |
 | `ads-reads` | Static/cached ADS 90-day reads | `831` |
-| `zenodo` | Zenodo record ID | `8301008` |
-| `biorxiv` | bioRxiv DOI | `10.1101/2024.11.11.623071v1` |
-| `layout` | Layout style (`badge` or `card`) | `badge` (default) |
-| `title` | Optional title override | `My Research Paper` |
+| `zenodo` | Zenodo record ID (or Zenodo DOI/URL) | `8301008` |
+| `plos-doi` | Explicit PLOS DOI for COUNTER stats | `10.1371/journal.pone.0295069` |
+| `biorxiv` | bioRxiv / medRxiv DOI | `10.1101/2024.11.11.623071v1` |
+| `biorxiv-pdfs` | Static/cached bioRxiv PDF download count | `1420` |
+| `biorxiv-views` | Static/cached bioRxiv abstract/HTML view count | `4850` |
+| `github` | GitHub `owner/repo` (or repo URL) for software papers | `verificarlo/verificarlo` |
+| `mailto` | Polite-pool contact email for OpenAlex / Crossref | `you@university.edu` |
+| `snapshot-url` | Static JSON snapshot URL for offline/CORS fallback | `dist/citeometer-snapshot.json` |
+| `lazy` | Defer API requests until scrolled into view (`true`/`false`) | `true` |
+| `shadow` | Render inside an isolated Shadow DOM root (`true`/`false`) | `true` |
+| `layout` | Layout style (`badge`, `card`, or `compact`) | `badge` (default) |
+| `title` | Optional title override (auto-fetched if omitted) | `My Research Paper` |
+
+---
+
+## 🎨 Theming
+
+Every color, the font and the corner radius are CSS custom properties. Override them on `:root` or on any wrapper:
+
+```css
+:root {
+  --pm-font: inherit;          /* use your site's font */
+  --pm-cites-text: #8c1515;    /* citation accent */
+  --pm-cites-bg: #f9eaea;
+  --pm-radius: 6px;
+}
+```
+
+Dark mode follows `prefers-color-scheme`; force it with `data-theme="dark"` or `data-theme="light"` on any ancestor.
 
 ---
 

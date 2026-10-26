@@ -1,0 +1,36 @@
+{
+  "name": "citeometer",
+  "version": "1.0.0",
+  "description": "Live citation, reads and download metrics for your papers: a zero-dependency web component for academic websites",
+  "main": "dist/citeometer.min.js",
+  "module": "dist/citeometer.esm.js",
+  "style": "dist/citeometer.min.css",
+  "jsdelivr": "dist/citeometer.min.js",
+  "unpkg": "dist/citeometer.min.js",
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node scripts/build.js",
+    "snapshot": "node scripts/fetch-snapshot.js",
+    "test": "node --test test/citeometer.test.js"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yohanchatelain/citeometer.git"
+  },
+  "homepage": "https://yohanchatelain.github.io/citeometer/",
+  "author": "Yohan Chatelain",
+  "keywords": [
+    "citations",
+    "bibliometrics",
+    "altmetrics",
+    "web-component",
+    "openalex",
+    "scholarly",
+    "academic"
+  ]
+}

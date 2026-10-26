@@ -3,349 +3,1120 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PaperMetrics.js — Embeddable Scholarly Metrics Widget</title>
-  <link rel="stylesheet" href="src/paper-metrics.css">
+  <title>Citeometer — Live citation metrics for your papers</title>
+  <meta name="description" content="A zero-dependency web component that shows live citations, reads and downloads for your publications, pulled from open scholarly APIs.">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    // Apply the saved theme before first paint to avoid a flash
+    try {
+      const saved = localStorage.getItem('pm-demo-theme');
+      if (saved === 'light' || saved === 'dark') document.documentElement.setAttribute('data-theme', saved);
+    } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="src/citeometer.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
+    :root,
+    [data-theme="light"] {
+      --bg: #fbfaf7;
+      --surface: #ffffff;
+      --surface-2: #f4f2ed;
+      --line: #e7e3da;
+      --line-strong: #d6d0c3;
+      --ink: #16181d;
+      --ink-2: #4a4f5a;
+      --ink-3: #868b96;
+      --accent: #1d5fbf;
+      --accent-ink: #ffffff;
+      --accent-soft: #e8f1fd;
+      --code-bg: #15171c;
+      --code-ink: #e6e8ee;
+      --code-line: #2a2e37;
+      --tok-tag: #7fb6ff;
+      --tok-attr: #f5c26b;
+      --tok-val: #8fd6a8;
+      --tok-punct: #8a92a3;
+      --tok-comment: #6b7385;
+      --shadow-lg: 0 1px 2px rgba(22, 24, 29, 0.04), 0 12px 32px -8px rgba(22, 24, 29, 0.10);
+
+      --pm-font: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0c0e12;
+        --surface: #12161f;
+        --surface-2: #171c26;
+        --line: #232a37;
+        --line-strong: #323a4a;
+        --ink: #eef1f6;
+        --ink-2: #a9b1c1;
+        --ink-3: #6b7487;
+        --accent: #7fb6ff;
+        --accent-ink: #0c0e12;
+        --accent-soft: #132741;
+        --code-bg: #0f1218;
+        --code-line: #232a37;
+        --shadow-lg: 0 1px 2px rgba(0, 0, 0, 0.4), 0 16px 40px -12px rgba(0, 0, 0, 0.6);
+      }
+    }
+
+    [data-theme="dark"] {
+      --bg: #0c0e12;
+      --surface: #12161f;
+      --surface-2: #171c26;
+      --line: #232a37;
+      --line-strong: #323a4a;
+      --ink: #eef1f6;
+      --ink-2: #a9b1c1;
+      --ink-3: #6b7487;
+      --accent: #7fb6ff;
+      --accent-ink: #0c0e12;
+      --accent-soft: #132741;
+      --code-bg: #0f1218;
+      --code-line: #232a37;
+      --shadow-lg: 0 1px 2px rgba(0, 0, 0, 0.4), 0 16px 40px -12px rgba(0, 0, 0, 0.6);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #f8fafc;
-      color: #0f172a;
-      line-height: 1.6;
       margin: 0;
-      padding: 0;
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.2s ease, color 0.2s ease;
     }
-    .wrapper {
-      max-width: 1060px;
+
+    a { color: var(--accent); }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    .wrap {
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 40px 24px 80px;
+      padding: 0 24px;
     }
-    header {
-      margin-bottom: 40px;
-      text-align: center;
+
+    .serif {
+      font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+      font-optical-sizing: auto;
+      font-weight: 500;
+      letter-spacing: -0.02em;
     }
-    .hero-badge {
-      display: inline-block;
-      background: #eff6ff;
-      color: #2563eb;
+
+    .mono { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 8px;
+      background: var(--ink);
+      color: var(--bg);
+      padding: 8px 12px;
+      border-radius: 6px;
+      z-index: 100;
+    }
+    .skip-link:focus { left: 8px; }
+
+    /* Navigation */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      backdrop-filter: saturate(1.4) blur(10px);
+      -webkit-backdrop-filter: saturate(1.4) blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      gap: 16px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 650;
+      font-size: 0.98rem;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--ink);
+      color: var(--bg);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .nav-links a {
+      color: var(--ink-2);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 6px 10px;
+      border-radius: 8px;
+    }
+    .nav-links a:hover { color: var(--ink); background: var(--surface-2); }
+
+    .icon-btn {
+      display: inline-grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink-2);
+      cursor: pointer;
+      margin-left: 6px;
+    }
+    .icon-btn:hover { color: var(--ink); border-color: var(--line-strong); }
+    .icon-btn svg { width: 17px; height: 17px; }
+    .theme-icon-dark { display: none; }
+    [data-theme="dark"] .theme-icon-dark { display: block; }
+    [data-theme="dark"] .theme-icon-light { display: none; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .theme-icon-dark { display: block; }
+      :root:not([data-theme="light"]) .theme-icon-light { display: none; }
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: 56px;
+      align-items: center;
+      padding: 72px 0 56px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       font-size: 0.8rem;
       font-weight: 600;
-      padding: 4px 12px;
+      color: var(--ink-2);
+      padding: 4px 12px 4px 6px;
+      border: 1px solid var(--line);
       border-radius: 9999px;
-      margin-bottom: 12px;
-      border: 1px solid #bfdbfe;
+      background: var(--surface);
+      margin-bottom: 22px;
+    }
+    .eyebrow-dot {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent-ink);
+      background: var(--accent);
+      padding: 1px 8px;
+      border-radius: 9999px;
     }
     h1 {
-      font-size: 2.4rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin: 0 0 12px;
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      line-height: 1.05;
+      margin: 0 0 20px;
+      text-wrap: balance;
     }
-    .subtitle {
-      font-size: 1.15rem;
-      color: #64748b;
-      max-width: 680px;
-      margin: 0 auto 24px;
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
     }
-    .api-pill-list {
+    .lede {
+      font-size: 1.12rem;
+      color: var(--ink-2);
+      max-width: 520px;
+      margin: 0 0 30px;
+      text-wrap: pretty;
+    }
+    .cta-row {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
       gap: 8px;
-      margin-top: 14px;
-    }
-    .api-pill {
-      font-size: 0.75rem;
-      padding: 3px 10px;
-      background: #fff;
-      border: 1px solid #e2e8f0;
-      border-radius: 6px;
-      color: #475569;
-      font-weight: 500;
-    }
-
-    .section-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin: 40px 0 16px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid #e2e8f0;
-    }
-
-    /* Live Playground Generator */
-    .generator-box {
-      background: #fff;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
-      margin-bottom: 36px;
-    }
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-    .form-group label {
-      display: block;
-      font-size: 0.82rem;
+      height: 44px;
+      padding: 0 18px;
+      border-radius: 10px;
+      font: inherit;
+      font-size: 0.92rem;
       font-weight: 600;
-      color: #334155;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary { background: var(--ink); color: var(--bg); }
+    .btn-primary:hover { background: color-mix(in srgb, var(--ink) 86%, var(--bg)); }
+    .btn-ghost { background: var(--surface); color: var(--ink); border-color: var(--line); }
+    .btn-ghost:hover { border-color: var(--line-strong); }
+    .btn svg { width: 16px; height: 16px; }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 18px;
+      margin-top: 28px;
+      font-size: 0.82rem;
+      color: var(--ink-3);
+    }
+    .hero-meta span { display: inline-flex; align-items: center; gap: 6px; }
+    .hero-meta svg { width: 14px; height: 14px; color: var(--ink-2); }
+
+    .hero-stage {
+      position: relative;
+    }
+    .hero-stage::before {
+      content: "";
+      position: absolute;
+      inset: -28px -20px;
+      background-image: radial-gradient(var(--line-strong) 1px, transparent 1px);
+      background-size: 18px 18px;
+      mask-image: radial-gradient(ellipse at center, #000 30%, transparent 72%);
+      -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 72%);
+      opacity: 0.7;
+      z-index: 0;
+    }
+    .hero-stage > * { position: relative; z-index: 1; }
+    .hero-stage .pm-card { box-shadow: var(--shadow-lg); margin: 0; }
+    .hero-caption {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.76rem;
+      color: var(--ink-3);
+      margin-top: 12px;
+      padding: 0 4px;
+    }
+
+    /* Sources strip */
+    .sources {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 22px 0;
+    }
+    .sources-inner {
+      display: flex;
+      align-items: center;
+      gap: 12px 28px;
+      flex-wrap: wrap;
+    }
+    .sources-label {
+      font-size: 0.74rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-3);
+    }
+    .sources-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 22px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .sources-list li {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--ink-2);
+    }
+    .sources-list small {
+      color: var(--ink-3);
+      font-size: 0.76rem;
+      margin-left: 4px;
+    }
+
+    /* Sections */
+    section.block { padding: 80px 0 0; }
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .kicker {
+      font-size: 0.76rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin: 0 0 8px;
+    }
+    h2 {
+      font-size: clamp(1.7rem, 3vw, 2.2rem);
+      line-height: 1.15;
+      margin: 0;
+    }
+    .section-desc {
+      color: var(--ink-2);
+      max-width: 440px;
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    /* Playground */
+    .playground {
+      display: grid;
+      grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .pg-form {
+      padding: 24px;
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .field label,
+    .field-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--ink);
       margin-bottom: 6px;
     }
-    .form-group input, .form-group select {
+    .field label .opt { color: var(--ink-3); font-weight: 500; }
+    .field input {
       width: 100%;
-      box-sizing: border-box;
-      padding: 8px 12px;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      font-size: 0.88rem;
-      font-family: inherit;
-    }
-    .form-group input:focus, .form-group select:focus {
-      outline: none;
-      border-color: #2563eb;
-      box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
-    }
-    .code-preview-box {
-      background: #0f172a;
-      color: #f8fafc;
+      height: 38px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
       border-radius: 8px;
-      padding: 16px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.82rem;
-      position: relative;
-      margin-top: 14px;
-      overflow-x: auto;
-    }
-    .copy-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: #334155;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      padding: 4px 10px;
-      font-size: 0.75rem;
-      cursor: pointer;
-    }
-    .copy-btn:hover { background: #475569; }
-
-    /* Demo List */
-    .paper-item {
-      background: #fff;
-      border: 1px solid #e2e8f0;
-      border-radius: 10px;
-      padding: 18px 20px;
-      margin-bottom: 14px;
-      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.04);
-    }
-    .paper-title {
-      font-weight: 600;
-      font-size: 1.05rem;
-      margin-bottom: 4px;
-      color: #0f172a;
-    }
-    .paper-authors {
+      background: var(--bg);
+      color: var(--ink);
+      font: inherit;
       font-size: 0.86rem;
-      color: #64748b;
-      margin-bottom: 10px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .field input.mono { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.8rem; }
+    .field input::placeholder { color: var(--ink-3); }
+    .field input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+    }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .segmented {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 3px;
+      gap: 3px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      margin: 0;
+    }
+    .segmented input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .segmented label {
+      display: block;
+      text-align: center;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink-2);
+      padding: 6px 0;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+    .segmented input:checked + label {
+      background: var(--surface);
+      color: var(--ink);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 0 0 1px var(--line);
+    }
+    .segmented input:focus-visible + label {
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
     }
 
-    pre code {
-      font-family: 'JetBrains Mono', monospace;
+    .pg-output {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
     }
-    .instructions-card {
-      background: #fff;
-      border: 1px solid #e2e8f0;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 24px;
+    .pg-preview {
+      flex: 1;
+      display: grid;
+      place-items: center;
+      padding: 40px 32px;
+      min-height: 280px;
+      background-color: var(--bg);
+      background-image: radial-gradient(var(--line) 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
+    .pg-preview > * { width: 100%; max-width: 620px; }
+    .pg-preview-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--ink-3);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--line);
+    }
+    .live-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-transform: none;
+      letter-spacing: 0;
+      font-weight: 500;
+    }
+    .live-dot::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22a55b;
+      box-shadow: 0 0 0 3px color-mix(in srgb, #22a55b 22%, transparent);
+    }
+
+    /* Code blocks */
+    .code {
+      position: relative;
+      background: var(--code-bg);
+      color: var(--code-ink);
+      border-radius: 12px;
+      border: 1px solid var(--code-line);
+      overflow: hidden;
+    }
+    .pg-output .code { border-radius: 0; border: 0; border-top: 1px solid var(--line); }
+    .code-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 10px 8px 16px;
+      border-bottom: 1px solid var(--code-line);
+      font-size: 0.74rem;
+      color: var(--tok-comment);
+    }
+    .code pre {
+      margin: 0;
+      padding: 16px;
+      overflow-x: auto;
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.8rem;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .code code { font-family: inherit; background: none; }
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      color: var(--code-ink);
+      border: 1px solid var(--code-line);
+      border-radius: 6px;
+      padding: 3px 9px;
+      font: inherit;
+      font-size: 0.74rem;
+      cursor: pointer;
+      opacity: 0.85;
+    }
+    .copy-btn:hover { opacity: 1; border-color: var(--tok-punct); }
+    .copy-btn svg { width: 13px; height: 13px; }
+    .copy-btn[data-copied="true"] { color: var(--tok-val); border-color: var(--tok-val); }
+
+    /* Prism tokens, mapped onto our palette */
+    .token.tag, .token.selector, .token.keyword { color: var(--tok-tag); }
+    .token.attr-name, .token.property, .token.function { color: var(--tok-attr); }
+    .token.attr-value, .token.string { color: var(--tok-val); }
+    .token.punctuation, .token.operator { color: var(--tok-punct); }
+    .token.comment { color: var(--tok-comment); font-style: italic; }
+    .token.attr-value > .token.punctuation { color: var(--tok-val); opacity: 0.75; }
+
+    /* Publications list */
+    .pubs {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--line);
+    }
+    .pub {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .pub-year {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--ink-3);
+      font-variant-numeric: tabular-nums;
+      padding-top: 2px;
+    }
+    .pub-title {
+      font-size: 1.12rem;
+      line-height: 1.35;
+      margin: 0 0 4px;
+      color: var(--ink);
+    }
+    .pub-authors {
+      font-size: 0.88rem;
+      color: var(--ink-2);
+      margin: 0 0 2px;
+    }
+    .pub-authors b { color: var(--ink); font-weight: 600; }
+    .pub-venue {
+      font-size: 0.86rem;
+      font-style: italic;
+      color: var(--ink-3);
+      margin: 0 0 10px;
+    }
+    .pub-tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-style: normal;
+      font-size: 0.7rem;
+      color: var(--ink-3);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 0 5px;
+      margin-left: 6px;
+    }
+
+    /* Install steps */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      counter-reset: step;
+    }
+    .step {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-width: 0;
+    }
+    .step-num {
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+    .step h3 {
+      font-size: 1rem;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+    .step p {
+      font-size: 0.88rem;
+      color: var(--ink-2);
+      margin: 0;
+    }
+    .step .code { margin-top: auto; }
+    .step .code pre { font-size: 0.74rem; padding: 12px 14px; }
+
+    .attr-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 28px;
+      font-size: 0.88rem;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .attr-table th, .attr-table td {
+      text-align: left;
+      padding: 11px 18px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .attr-table tr:last-child td { border-bottom: 0; }
+    .attr-table th {
+      font-size: 0.74rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-3);
+      background: var(--surface-2);
+    }
+    .attr-table code {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 0.8rem;
+      color: var(--ink);
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      padding: 1px 6px;
+      border-radius: 5px;
+      white-space: nowrap;
+    }
+    .attr-table td:last-child { color: var(--ink-2); }
+
+    footer {
+      margin-top: 96px;
+      border-top: 1px solid var(--line);
+      padding: 28px 0 40px;
+      font-size: 0.84rem;
+      color: var(--ink-3);
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    footer a { color: var(--ink-2); text-decoration: none; }
+    footer a:hover { color: var(--ink); text-decoration: underline; }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; gap: 40px; padding: 48px 0 40px; }
+      .playground { grid-template-columns: 1fr; }
+      .pg-form { border-right: 0; border-bottom: 1px solid var(--line); }
+      .steps { grid-template-columns: 1fr; }
+      .nav-links a:not(.keep) { display: none; }
+    }
+
+    @media (max-width: 560px) {
+      .wrap { padding: 0 16px; }
+      .pub { grid-template-columns: 1fr; gap: 4px; }
+      .pg-preview { padding: 28px 16px; }
+      .field-row { grid-template-columns: 1fr; }
+      .attr-table th:nth-child(2), .attr-table td:nth-child(2) { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      body, .btn, .segmented label { transition: none; }
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <header>
-      <span class="hero-badge">Open Science • Public APIs • Embeddable Widget</span>
-      <h1>PaperMetrics.js</h1>
-      <p class="subtitle">A drop-in web package & widget for academic personal sites to gracefully visualize paper citations, recent readership, and downloads.</p>
-      
-      <div class="api-pill-list">
-        <span class="api-pill">🪐 NASA ADS (90d reads)</span>
-        <span class="api-pill">📚 OpenAlex (Citations)</span>
-        <span class="api-pill">🔬 Semantic Scholar</span>
-        <span class="api-pill">🏛️ Crossref</span>
-        <span class="api-pill">🧬 Europe PMC</span>
-        <span class="api-pill">📄 bioRxiv</span>
-        <span class="api-pill">📊 PLOS COUNTER</span>
-        <span class="api-pill">💾 Zenodo</span>
-      </div>
-    </header>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Interactive Generator -->
-    <div class="generator-box">
-      <h2 style="font-size: 1.15rem; font-weight:700; margin-top:0; margin-bottom: 16px;">🛠️ Interactive Embed Generator</h2>
-      <div class="form-grid">
-        <div class="form-group">
-          <label>Paper Title</label>
-          <input type="text" id="genTitle" value="Longitudinal brain structure changes in Parkinson's disease" oninput="updateGenerator()">
-        </div>
-        <div class="form-group">
-          <label>DOI (Crossref / OpenAlex / PLOS)</label>
-          <input type="text" id="genDoi" value="10.1371/journal.pone.0295069" oninput="updateGenerator()">
-        </div>
-        <div class="form-group">
-          <label>arXiv ID (optional)</label>
-          <input type="text" id="genArxiv" placeholder="e.g. 2610.01889" oninput="updateGenerator()">
-        </div>
-        <div class="form-group">
-          <label>NASA ADS Bibcode (optional)</label>
-          <input type="text" id="genAds" value="2024PLoSO..1995069S" oninput="updateGenerator()">
-        </div>
-        <div class="form-group">
-          <label>Zenodo Record ID (optional)</label>
-          <input type="text" id="genZenodo" placeholder="e.g. 8301008" oninput="updateGenerator()">
-        </div>
-        <div class="form-group">
-          <label>Layout Style</label>
-          <select id="genLayout" onchange="updateGenerator()">
-            <option value="card">Card (Rich interactive box)</option>
-            <option value="badge">Badge (Compact inline pills)</option>
-          </select>
-        </div>
-      </div>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-feather" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" x2="2" y1="8" y2="22"/><line x1="17.5" x2="9" y1="15" y2="15"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+    <symbol id="i-moon-half" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 0 0 20z" fill="currentColor"/></symbol>
+  </svg>
 
-      <div style="font-weight: 600; font-size: 0.88rem; margin-bottom: 8px;">Live Preview:</div>
-      <div id="livePreviewContainer" style="margin-bottom: 16px;"></div>
-
-      <div style="font-weight: 600; font-size: 0.88rem; margin-bottom: 4px;">Embed Code:</div>
-      <div class="code-preview-box">
-        <button class="copy-btn" onclick="copySnippet()">Copy Snippet</button>
-        <code id="snippetCode"></code>
+  <nav class="nav" aria-label="Primary">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#">
+        <span class="brand-mark"><svg width="16" height="16"><use href="#i-chart"/></svg></span>
+        Cite<span style="color:var(--accent)">o</span>meter
+      </a>
+      <div class="nav-links">
+        <a href="#playground">Playground</a>
+        <a href="#examples">Examples</a>
+        <a href="#install">Install</a>
+        <a class="keep" href="https://github.com/yohanchatelain/citeometer" rel="noopener">GitHub</a>
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">
+          <svg class="theme-icon-light"><use href="#i-moon"/></svg>
+          <svg class="theme-icon-dark"><use href="#i-sun"/></svg>
+        </button>
       </div>
     </div>
+  </nav>
 
-    <!-- Live Examples -->
-    <h2 class="section-title">✨ Live Demos on Real Publications</h2>
-    
-    <div class="paper-item">
-      <div class="paper-title">Longitudinal brain structure changes in Parkinson’s disease: a replication study</div>
-      <div class="paper-authors">Andrzej Sokolowski, Nikhil Bhagwat, Yohan Chatelain, et al. • <em>PLOS ONE (2024)</em></div>
-      <paper-metrics
-        title="Longitudinal brain structure changes in Parkinson's disease: a replication study"
-        doi="10.1371/journal.pone.0295069"
-        ads="2024PLoSO..1995069S"
-        layout="badge">
-      </paper-metrics>
+  <main id="main">
+    <div class="wrap">
+      <header class="hero">
+        <div>
+          <span class="eyebrow"><span class="eyebrow-dot">Open</span> Free, keyless, open scholarly APIs</span>
+          <h1 class="serif">Show the <em>reach</em> of your research, live.</h1>
+          <p class="lede">A drop-in web component for academic homepages. Citations, recent reads and downloads, pulled straight from OpenAlex, Semantic Scholar, NASA ADS and friends.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#playground">Try the playground <svg><use href="#i-arrow"/></svg></a>
+            <a class="btn btn-ghost" href="#install">Install in 2 lines</a>
+          </div>
+          <div class="hero-meta">
+            <span><svg><use href="#i-feather"/></svg>Zero dependencies</span>
+            <span><svg><use href="#i-lock"/></svg>No API keys</span>
+            <span><svg><use href="#i-moon-half"/></svg>Light &amp; dark themes</span>
+          </div>
+        </div>
+        <div class="hero-stage">
+          <cite-o-meter
+            title="Longitudinal brain structure changes in Parkinson's disease: a replication study"
+            doi="10.1371/journal.pone.0295069"
+            ads="2024PLoSO..1995069S"
+            layout="card">
+          </cite-o-meter>
+          <div class="hero-caption">
+            <span>&lt;cite-o-meter layout="card"&gt;</span>
+            <span>Live data</span>
+          </div>
+        </div>
+      </header>
     </div>
 
-    <div class="paper-item">
-      <div class="paper-title">Numerical Stability of DeepGOPlus Inference</div>
-      <div class="paper-authors">Ines Gonzalez Pepe, Yohan Chatelain, Gregory Kiar, Tristan Glatard • <em>PLOS ONE (2024)</em></div>
-      <paper-metrics
-        title="Numerical Stability of DeepGOPlus Inference"
-        doi="10.1371/journal.pone.0296725"
-        ads="2024PLoSO..1996725G"
-        ads-reads="269"
-        layout="badge">
-      </paper-metrics>
-    </div>
-
-    <div class="paper-item">
-      <div class="paper-title">Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2</div>
-      <div class="paper-authors">Yohan Chatelain, et al. • <em>arXiv (2026)</em></div>
-      <paper-metrics
-        title="Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2"
-        arxiv="2610.01889"
-        ads="2026arXiv261001889C"
-        ads-reads="831"
-        layout="badge">
-      </paper-metrics>
-    </div>
-
-    <div class="paper-item">
-      <div class="paper-title">Verificarlo: Floating-point precision and numerical variability toolkit</div>
-      <div class="paper-authors">Verificarlo maintainers • <em>Zenodo Software Release</em></div>
-      <paper-metrics
-        title="verificarlo/verificarlo: Verificarlo v1.0.0"
-        zenodo="8301008"
-        layout="badge">
-      </paper-metrics>
-    </div>
-
-    <!-- Quickstart Instructions -->
-    <h2 class="section-title">🚀 How to Embed on Any Website</h2>
-    <div class="instructions-card">
-      <p>Add the following two lines anywhere on your personal website (Jekyll, Hugo, plain HTML, or GitHub Pages):</p>
-      
-      <div class="code-preview-box" style="margin-bottom: 16px;">
-<code>&lt;!-- 1. Include CSS and JS in your &lt;head&gt; or before &lt;/body&gt; --&gt;
-&lt;link rel="stylesheet" href="https://yourusername.github.io/paper-metrics-widget/src/paper-metrics.css"&gt;
-&lt;script src="https://yourusername.github.io/paper-metrics-widget/src/paper-metrics.js" defer&gt;&lt;/script&gt;</code>
-      </div>
-
-      <p>Then place the Web Component or HTML tag in your publications list:</p>
-      <div class="code-preview-box">
-<code>&lt;!-- 2. Inline badge example --&gt;
-&lt;paper-metrics doi="10.1371/journal.pone.0295069" ads="2024PLoSO..1995069S" layout="badge"&gt;&lt;/paper-metrics&gt;
-
-&lt;!-- Or rich card view --&gt;
-&lt;paper-metrics doi="10.1371/journal.pone.0295069" layout="card"&gt;&lt;/paper-metrics&gt;</code>
+    <div class="sources">
+      <div class="wrap sources-inner">
+        <span class="sources-label">Aggregates</span>
+        <ul class="sources-list">
+          <li>OpenAlex<small>citations</small></li>
+          <li>Semantic Scholar<small>influential</small></li>
+          <li>Crossref</li>
+          <li>Europe PMC</li>
+          <li>NASA ADS<small>90d reads</small></li>
+          <li>bioRxiv</li>
+          <li>PLOS COUNTER</li>
+          <li>Zenodo</li>
+          <li>DataCite</li>
+          <li>GitHub</li>
+        </ul>
       </div>
     </div>
-  </div>
 
-  <script src="src/paper-metrics.js"></script>
+    <div class="wrap">
+      <!-- Interactive Generator -->
+      <section class="block" id="playground" aria-labelledby="pg-title">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Playground</p>
+            <h2 class="serif" id="pg-title">Build your embed</h2>
+          </div>
+          <p class="section-desc">Paste any identifier you have. The widget queries every matching source and merges the results.</p>
+        </div>
+
+        <div class="playground">
+          <form class="pg-form" onsubmit="return false" oninput="updateGenerator()">
+            <div class="field">
+              <label for="genTitle">Paper title <span class="opt">optional</span></label>
+              <input type="text" id="genTitle" value="Longitudinal brain structure changes in Parkinson's disease">
+            </div>
+            <div class="field">
+              <label for="genDoi">DOI</label>
+              <input class="mono" type="text" id="genDoi" value="10.1371/journal.pone.0295069" spellcheck="false" autocomplete="off">
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="genArxiv">arXiv ID</label>
+                <input class="mono" type="text" id="genArxiv" placeholder="2610.01889" spellcheck="false" autocomplete="off">
+              </div>
+              <div class="field">
+                <label for="genZenodo">Zenodo ID</label>
+                <input class="mono" type="text" id="genZenodo" placeholder="8301008" spellcheck="false" autocomplete="off">
+              </div>
+            </div>
+            <div class="field">
+              <label for="genAds">NASA ADS bibcode</label>
+              <input class="mono" type="text" id="genAds" value="2024PLoSO..1995069S" spellcheck="false" autocomplete="off">
+            </div>
+            <fieldset class="field" style="border:0;padding:0;margin:0">
+              <legend class="field-label">Layout</legend>
+              <div class="segmented" role="radiogroup">
+                <input type="radio" name="layout" id="lay-card" value="card" checked onchange="updateGenerator(true)"><label for="lay-card">Card</label>
+                <input type="radio" name="layout" id="lay-badge" value="badge" onchange="updateGenerator(true)"><label for="lay-badge">Badges</label>
+                <input type="radio" name="layout" id="lay-compact" value="compact" onchange="updateGenerator(true)"><label for="lay-compact">Compact</label>
+              </div>
+            </fieldset>
+          </form>
+
+          <div class="pg-output">
+            <div class="pg-preview-label">
+              <span>Preview</span>
+              <span class="live-dot">Live</span>
+            </div>
+            <div class="pg-preview" id="livePreviewContainer" aria-live="polite"></div>
+            <div class="code">
+              <div class="code-bar">
+                <span>HTML</span>
+                <button class="copy-btn" type="button" data-copy-target="snippetCode"><svg><use href="#i-copy"/></svg><span>Copy</span></button>
+              </div>
+              <pre><code class="language-markup" id="snippetCode"></code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Live Examples -->
+      <section class="block" id="examples" aria-labelledby="ex-title">
+        <div class="section-head">
+          <div>
+            <p class="kicker">In the wild</p>
+            <h2 class="serif" id="ex-title">On a publications page</h2>
+          </div>
+          <p class="section-desc">Badges sit quietly under each reference, the way they would on a personal academic site.</p>
+        </div>
+
+        <ol class="pubs">
+          <li class="pub">
+            <div class="pub-year">2026</div>
+            <div>
+              <h3 class="pub-title serif">Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2</h3>
+              <p class="pub-authors"><b>Yohan Chatelain</b>, et al.</p>
+              <p class="pub-venue">arXiv preprint <span class="pub-tag">arxiv</span><span class="pub-tag">ads</span></p>
+              <cite-o-meter
+                title="Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2"
+                arxiv="2610.01889"
+                ads="2026arXiv261001889C"
+                ads-reads="831"
+                layout="badge">
+              </cite-o-meter>
+            </div>
+          </li>
+          <li class="pub">
+            <div class="pub-year">2024</div>
+            <div>
+              <h3 class="pub-title serif">Longitudinal brain structure changes in Parkinson’s disease: a replication study</h3>
+              <p class="pub-authors">Andrzej Sokolowski, Nikhil Bhagwat, <b>Yohan Chatelain</b>, et al.</p>
+              <p class="pub-venue">PLOS ONE <span class="pub-tag">doi</span><span class="pub-tag">ads</span></p>
+              <cite-o-meter
+                title="Longitudinal brain structure changes in Parkinson's disease: a replication study"
+                doi="10.1371/journal.pone.0295069"
+                ads="2024PLoSO..1995069S"
+                layout="badge">
+              </cite-o-meter>
+            </div>
+          </li>
+          <li class="pub">
+            <div class="pub-year">2024</div>
+            <div>
+              <h3 class="pub-title serif">Numerical Stability of DeepGOPlus Inference</h3>
+              <p class="pub-authors">Ines Gonzalez Pepe, <b>Yohan Chatelain</b>, Gregory Kiar, Tristan Glatard</p>
+              <p class="pub-venue">PLOS ONE <span class="pub-tag">doi</span><span class="pub-tag">compact</span></p>
+              <cite-o-meter
+                title="Numerical Stability of DeepGOPlus Inference"
+                doi="10.1371/journal.pone.0296725"
+                ads="2024PLoSO..1996725G"
+                ads-reads="269"
+                layout="compact">
+              </cite-o-meter>
+            </div>
+          </li>
+          <li class="pub">
+            <div class="pub-year">2023</div>
+            <div>
+              <h3 class="pub-title serif">Verificarlo: floating-point precision and numerical variability toolkit</h3>
+              <p class="pub-authors">Verificarlo maintainers</p>
+              <p class="pub-venue">Zenodo software release <span class="pub-tag">zenodo</span></p>
+              <cite-o-meter
+                title="verificarlo/verificarlo: Verificarlo v1.0.0"
+                zenodo="8301008"
+                layout="badge">
+              </cite-o-meter>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Quickstart Instructions -->
+      <section class="block" id="install" aria-labelledby="in-title">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Install</p>
+            <h2 class="serif" id="in-title">Works on any static site</h2>
+          </div>
+          <p class="section-desc">Jekyll, Hugo, Quarto, al-folio, plain HTML or GitHub Pages. No build step required.</p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <span class="step-num">1</span>
+            <h3>Load the script</h3>
+            <p>One tag in your <code>&lt;head&gt;</code>. The bundle injects its own styles.</p>
+            <div class="code">
+              <div class="code-bar"><span>HTML</span><button class="copy-btn" type="button" data-copy-target="step1"><svg><use href="#i-copy"/></svg><span>Copy</span></button></div>
+              <pre><code class="language-markup" id="step1">&lt;script src="https://cdn.jsdelivr.net/gh/yohanchatelain/citeometer@v1.0.0/dist/citeometer.min.js" defer&gt;&lt;/script&gt;</code></pre>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-num">2</span>
+            <h3>Drop in a tag</h3>
+            <p>Use any identifier you have: DOI, arXiv, ADS bibcode, Zenodo, bioRxiv or GitHub repo.</p>
+            <div class="code">
+              <div class="code-bar"><span>HTML</span><button class="copy-btn" type="button" data-copy-target="step2"><svg><use href="#i-copy"/></svg><span>Copy</span></button></div>
+              <pre><code class="language-markup" id="step2">&lt;cite-o-meter
+  doi="10.1371/journal.pone.0295069"
+  layout="badge"&gt;&lt;/cite-o-meter&gt;</code></pre>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-num">3</span>
+            <h3>Match your theme</h3>
+            <p>Every color and the font are CSS variables. Dark mode follows the visitor’s system.</p>
+            <div class="code">
+              <div class="code-bar"><span>CSS</span><button class="copy-btn" type="button" data-copy-target="step3"><svg><use href="#i-copy"/></svg><span>Copy</span></button></div>
+              <pre><code class="language-css" id="step3">:root {
+  --pm-font: inherit;
+  --pm-cites-text: #8c1515;
+  --pm-radius: 6px;
+}</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <table class="attr-table">
+          <thead>
+            <tr><th>Attribute</th><th>Example</th><th>What it does</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>doi</code></td><td><code>10.1371/journal.pone.0295069</code></td><td>Citations from OpenAlex, Semantic Scholar, Crossref, Europe PMC; PLOS downloads.</td></tr>
+            <tr><td><code>arxiv</code></td><td><code>2610.01889</code></td><td>Preprint citations, merged with the published version when one exists.</td></tr>
+            <tr><td><code>ads</code></td><td><code>2024PLoSO..1995069S</code></td><td>NASA ADS bibcode for 90-day reads. Pair with <code>ads-reads</code> or a snapshot.</td></tr>
+            <tr><td><code>zenodo</code></td><td><code>8301008</code></td><td>Views and downloads for software and datasets.</td></tr>
+            <tr><td><code>biorxiv</code></td><td><code>10.1101/2023.01.01.522000</code></td><td>bioRxiv / medRxiv PDF downloads and views.</td></tr>
+            <tr><td><code>github</code></td><td><code>owner/repo</code></td><td>Stars and release downloads.</td></tr>
+            <tr><td><code>layout</code></td><td><code>badge · card · compact</code></td><td>Presentation. Defaults to <code>badge</code>.</td></tr>
+            <tr><td><code>lazy</code></td><td><code>true</code></td><td>Waits until the widget scrolls into view before fetching.</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>Citeometer · MIT License</span>
+      <span>Data courtesy of <a href="https://openalex.org" rel="noopener">OpenAlex</a>, <a href="https://www.semanticscholar.org" rel="noopener">Semantic Scholar</a>, <a href="https://ui.adsabs.harvard.edu" rel="noopener">NASA ADS</a> and other open infrastructure.</span>
+    </div>
+  </footer>
+
+  <script src="src/citeometer.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" data-manual></script>
   <script>
-    function updateGenerator() {
-      const title = document.getElementById('genTitle').value;
-      const doi = document.getElementById('genDoi').value;
-      const arxiv = document.getElementById('genArxiv').value;
-      const ads = document.getElementById('genAds').value;
-      const zenodo = document.getElementById('genZenodo').value;
-      const layout = document.getElementById('genLayout').value;
+    let previewDebounceTimer = null;
 
-      // Build tag
-      let attrs = [];
-      if (title) attrs.push(`title="${title}"`);
-      if (doi) attrs.push(`doi="${doi}"`);
-      if (arxiv) attrs.push(`arxiv="${arxiv}"`);
-      if (ads) attrs.push(`ads="${ads}"`);
-      if (zenodo) attrs.push(`zenodo="${zenodo}"`);
-      attrs.push(`layout="${layout}"`);
+    function escapeAttr(val) {
+      return String(val)
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+    }
 
-      const snippet = `<paper-metrics ${attrs.join(' ')}></paper-metrics>`;
-      document.getElementById('snippetCode').innerText = snippet;
+    function readGenerator() {
+      const val = (id) => document.getElementById(id).value.trim();
+      return {
+        title: val('genTitle'),
+        doi: val('genDoi'),
+        arxiv: val('genArxiv'),
+        ads: val('genAds'),
+        zenodo: val('genZenodo'),
+        layout: document.querySelector('input[name="layout"]:checked').value
+      };
+    }
 
-      // Update preview
+    function highlight(el) {
+      if (window.Prism) Prism.highlightElement(el);
+    }
+
+    function renderLivePreview() {
+      const cfg = readGenerator();
       const preview = document.getElementById('livePreviewContainer');
       preview.innerHTML = '';
-      const el = document.createElement('paper-metrics');
-      if (title) el.setAttribute('title', title);
-      if (doi) el.setAttribute('doi', doi);
-      if (arxiv) el.setAttribute('arxiv', arxiv);
-      if (ads) el.setAttribute('ads', ads);
-      if (zenodo) el.setAttribute('zenodo', zenodo);
-      el.setAttribute('layout', layout);
+      const el = document.createElement('cite-o-meter');
+      for (const key of ['title', 'doi', 'arxiv', 'ads', 'zenodo']) {
+        if (cfg[key]) el.setAttribute(key, cfg[key]);
+      }
+      el.setAttribute('layout', cfg.layout);
       preview.appendChild(el);
     }
 
-    function copySnippet() {
-      const txt = document.getElementById('snippetCode').innerText;
-      navigator.clipboard.writeText(txt).then(() => {
-        const btn = document.querySelector('.copy-btn');
-        btn.innerText = 'Copied!';
-        setTimeout(() => btn.innerText = 'Copy Snippet', 2000);
-      });
+    function updateGenerator(immediate = false) {
+      const cfg = readGenerator();
+
+      // Build tag with properly escaped attributes, one per line
+      const attrs = [];
+      for (const key of ['title', 'doi', 'arxiv', 'ads', 'zenodo', 'layout']) {
+        if (cfg[key]) attrs.push(`  ${key}="${escapeAttr(cfg[key])}"`);
+      }
+      const snippet = `<cite-o-meter\n${attrs.join('\n')}>\n</cite-o-meter>`;
+      const codeEl = document.getElementById('snippetCode');
+      codeEl.textContent = snippet;
+      highlight(codeEl);
+
+      // Debounce live preview network requests when typing
+      if (previewDebounceTimer) clearTimeout(previewDebounceTimer);
+      if (immediate === true) {
+        renderLivePreview();
+      } else {
+        previewDebounceTimer = setTimeout(renderLivePreview, 350);
+      }
     }
 
-    window.addEventListener('DOMContentLoaded', updateGenerator);
+    document.addEventListener('click', (event) => {
+      const btn = event.target.closest('.copy-btn');
+      if (!btn || !navigator.clipboard) return;
+      const txt = document.getElementById(btn.dataset.copyTarget).textContent;
+      navigator.clipboard.writeText(txt).then(() => {
+        const label = btn.querySelector('span');
+        const use = btn.querySelector('use');
+        btn.dataset.copied = 'true';
+        label.textContent = 'Copied';
+        use.setAttribute('href', '#i-check');
+        setTimeout(() => {
+          btn.dataset.copied = 'false';
+          label.textContent = 'Copy';
+          use.setAttribute('href', '#i-copy');
+        }, 1800);
+      }).catch(() => {});
+    });
+
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const root = document.documentElement;
+      const current = root.getAttribute('data-theme')
+        || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      const next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('pm-demo-theme', next); } catch (e) {}
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.step code').forEach(highlight);
+      updateGenerator(true);
+    });
   </script>
 </body>
 </html>
