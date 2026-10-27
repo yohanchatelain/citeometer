@@ -18,6 +18,11 @@ if (typeof dns.setDefaultResultOrder === 'function') {
   dns.setDefaultResultOrder('ipv4first');
 }
 
+const origFetch = global.fetch;
+if (typeof origFetch === 'function' && typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function') {
+  global.fetch = (url, init = {}) => origFetch(url, { signal: AbortSignal.timeout(8000), ...init });
+}
+
 const fs = require('fs');
 const path = require('path');
 const Citeometer = require('../src/citeometer.js');
