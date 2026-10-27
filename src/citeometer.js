@@ -1260,7 +1260,7 @@
     const orgScope = metrics.githubRepos ? ` across ${metrics.githubRepos} repositories` : '';
     if (metrics.githubStars !== null && metrics.githubStars > 0) {
       pills.push(`
-        <span class="pm-badge pm-badge-github" title="GitHub Stars${escapeHtml(orgScope)}">
+        <span class="pm-badge pm-badge-github pm-badge-stars" title="GitHub Stars${escapeHtml(orgScope)}">
           ${icon('star')}
           <strong>${formatNum(metrics.githubStars)}</strong> ${metrics.githubStars === 1 ? 'star' : 'stars'}
         </span>
@@ -1302,7 +1302,7 @@
 
     if (metrics.githubDownloads !== null && metrics.githubDownloads > 0) {
       pills.push(`
-        <span class="pm-badge pm-badge-github" title="GitHub Release Asset Downloads">
+        <span class="pm-badge pm-badge-forks" title="GitHub Release Asset Downloads">
           ${icon('download')}
           <strong>${formatNum(metrics.githubDownloads)}</strong> downloads
         </span>

@@ -33,6 +33,8 @@
   --pm-plos-text: #7a3bc2;
   --pm-zenodo-bg: #fbe9f3;
   --pm-zenodo-text: #a8326e;
+  --pm-stars-bg: #fef9c3;
+  --pm-stars-text: #854d0e;
   --pm-github-bg: #eef0f3;
   --pm-github-text: #344054;
   --pm-docker-bg: #e6f4fe;
@@ -77,6 +79,8 @@
     --pm-plos-text: #c9a3ff;
     --pm-zenodo-bg: #3a1529;
     --pm-zenodo-text: #f4a1cb;
+    --pm-stars-bg: #3b2f0b;
+    --pm-stars-text: #fde047;
     --pm-github-bg: #1f2531;
     --pm-github-text: #d0d6e2;
     --pm-docker-bg: #0c293d;
@@ -119,6 +123,8 @@
   --pm-plos-text: #c9a3ff;
   --pm-zenodo-bg: #3a1529;
   --pm-zenodo-text: #f4a1cb;
+  --pm-stars-bg: #3b2f0b;
+  --pm-stars-text: #fde047;
   --pm-github-bg: #1f2531;
   --pm-github-text: #d0d6e2;
   --pm-docker-bg: #0c293d;
@@ -196,6 +202,7 @@
 .pm-badge-plos { background: var(--pm-plos-bg); color: var(--pm-plos-text); }
 .pm-badge-zenodo { background: var(--pm-zenodo-bg); color: var(--pm-zenodo-text); }
 .pm-badge-github,
+.pm-badge-stars { background: var(--pm-stars-bg); color: var(--pm-stars-text); }
 .pm-badge-forks { background: var(--pm-github-bg); color: var(--pm-github-text); }
 .pm-badge-clones { background: var(--pm-biorxiv-bg); color: var(--pm-biorxiv-text); }
 .pm-badge-views { background: var(--pm-ads-bg); color: var(--pm-ads-text); }
@@ -413,7 +420,7 @@
 .pm-metric-biorxiv { color: var(--pm-biorxiv-text); }
 .pm-metric-plos { color: var(--pm-plos-text); }
 .pm-metric-zenodo { color: var(--pm-zenodo-text); }
-.pm-metric-github { color: var(--pm-github-text); }
+.pm-metric-github { color: var(--pm-stars-text); }
 .pm-metric-clones { color: var(--pm-biorxiv-text); }
 .pm-metric-docker { color: var(--pm-docker-text); }
 .pm-metric-pypi { color: var(--pm-pypi-text); }
