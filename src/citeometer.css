@@ -35,6 +35,12 @@
   --pm-zenodo-text: #a8326e;
   --pm-github-bg: #eef0f3;
   --pm-github-text: #344054;
+  --pm-docker-bg: #e6f4fe;
+  --pm-docker-text: #0369a1;
+  --pm-pypi-bg: #fef6e0;
+  --pm-pypi-text: #9a5b04;
+  --pm-npm-bg: #feeceb;
+  --pm-npm-text: #b91c1c;
 
   --pm-loading-bg: #eef0f3;
   --pm-loading-shine: #f8f9fb;
@@ -73,6 +79,12 @@
     --pm-zenodo-text: #f4a1cb;
     --pm-github-bg: #1f2531;
     --pm-github-text: #d0d6e2;
+    --pm-docker-bg: #0c293d;
+    --pm-docker-text: #7dd3fc;
+    --pm-pypi-bg: #332407;
+    --pm-pypi-text: #fcd34d;
+    --pm-npm-bg: #3b1214;
+    --pm-npm-text: #fca5a5;
 
     --pm-loading-bg: #1d2330;
     --pm-loading-shine: #262d3c;
@@ -109,6 +121,12 @@
   --pm-zenodo-text: #f4a1cb;
   --pm-github-bg: #1f2531;
   --pm-github-text: #d0d6e2;
+  --pm-docker-bg: #0c293d;
+  --pm-docker-text: #7dd3fc;
+  --pm-pypi-bg: #332407;
+  --pm-pypi-text: #fcd34d;
+  --pm-npm-bg: #3b1214;
+  --pm-npm-text: #fca5a5;
 
   --pm-loading-bg: #1d2330;
   --pm-loading-shine: #262d3c;
@@ -177,7 +195,13 @@
 .pm-badge-biorxiv { background: var(--pm-biorxiv-bg); color: var(--pm-biorxiv-text); }
 .pm-badge-plos { background: var(--pm-plos-bg); color: var(--pm-plos-text); }
 .pm-badge-zenodo { background: var(--pm-zenodo-bg); color: var(--pm-zenodo-text); }
-.pm-badge-github { background: var(--pm-github-bg); color: var(--pm-github-text); }
+.pm-badge-github,
+.pm-badge-forks { background: var(--pm-github-bg); color: var(--pm-github-text); }
+.pm-badge-clones { background: var(--pm-biorxiv-bg); color: var(--pm-biorxiv-text); }
+.pm-badge-views { background: var(--pm-ads-bg); color: var(--pm-ads-text); }
+.pm-badge-docker { background: var(--pm-docker-bg); color: var(--pm-docker-text); }
+.pm-badge-pypi { background: var(--pm-pypi-bg); color: var(--pm-pypi-text); }
+.pm-badge-npm { background: var(--pm-npm-bg); color: var(--pm-npm-text); }
 
 /* Loading skeleton */
 .pm-badge-loading {
@@ -390,6 +414,10 @@
 .pm-metric-plos { color: var(--pm-plos-text); }
 .pm-metric-zenodo { color: var(--pm-zenodo-text); }
 .pm-metric-github { color: var(--pm-github-text); }
+.pm-metric-clones { color: var(--pm-biorxiv-text); }
+.pm-metric-docker { color: var(--pm-docker-text); }
+.pm-metric-pypi { color: var(--pm-pypi-text); }
+.pm-metric-npm { color: var(--pm-npm-text); }
 
 /* Annual citation sparkline */
 .pm-sparkline-box {

@@ -121,7 +121,7 @@ function extractConfigsFromFile(filePath) {
       attrs[name] = unescapeAttr(rawVal);
     }
 
-    const isCiteometerTag = tagName === 'cite-o-meter' || tagName === 'paper-metrics';
+    const isCiteometerTag = tagName === 'cite-o-meter' || tagName === 'paper-metrics' || tagName === 'repo-meter';
     const classVal = attrs.class || '';
     const hasCiteometerClass = /(?:^|\s)(?:citeometer|paper-metrics)(?:\s|$)/.test(classVal);
 
@@ -148,11 +148,16 @@ function extractConfigsFromFile(filePath) {
       ads: getAttr('ads') || getAttr('ads-bibcode'),
       adsReads: getAttr('ads-reads'),
       github: getAttr('github'),
+      githubClones: getAttr('github-clones'),
+      githubViews: getAttr('github-views'),
+      docker: getAttr('docker'),
+      pypi: getAttr('pypi'),
+      npm: getAttr('npm'),
       layout: getAttr('layout') || 'badge'
     };
 
     // Ensure at least one primary identifier exists
-    if (cfg.doi || cfg.arxiv || cfg.biorxiv || cfg.zenodo || cfg.adsBibcode || cfg.plosDoi || cfg.github) {
+    if (cfg.doi || cfg.arxiv || cfg.biorxiv || cfg.zenodo || cfg.adsBibcode || cfg.plosDoi || cfg.github || cfg.docker || cfg.pypi || cfg.npm) {
       configs.push(cfg);
     }
   }
@@ -170,6 +175,9 @@ function getCanonicalKey(cfg) {
     norm(cfg.adsBibcode),
     norm(cfg.plosDoi),
     norm(cfg.github),
+    norm(cfg.docker),
+    norm(cfg.pypi),
+    norm(cfg.npm),
     norm(cfg.adsReads),
     norm(cfg.biorxivPdfs),
     norm(cfg.biorxivViews)
@@ -239,16 +247,49 @@ function registerPaperKeys(papersMap, cfg, metrics) {
   if (metrics.github) githubCandidates.add(metrics.github);
   if (cfg.github) {
     githubCandidates.add(cfg.github);
-    const cleaned = String(cfg.github).trim().replace(/^(?:https?:\/\/github\.com\/)/i, '').replace(/\.git$/i, '').trim();
+    const cleaned = String(cfg.github).trim().replace(/^(?:https?:\/\/github\.com\/)/i, '').replace(/\.git$/i, '').replace(/\/+$/, '').trim();
     if (cleaned) githubCandidates.add(cleaned);
   }
   for (const github of githubCandidates) {
     papersMap[`github:${github}`] = metrics;
   }
+
+  // 7. Docker Hub
+  const dockerCandidates = new Set();
+  if (metrics.docker) dockerCandidates.add(metrics.docker);
+  if (cfg.docker) dockerCandidates.add(cfg.docker);
+  for (const docker of dockerCandidates) {
+    papersMap[`docker:${docker}`] = metrics;
+  }
+
+  // 8. PyPI
+  const pypiCandidates = new Set();
+  if (metrics.pypi) pypiCandidates.add(metrics.pypi);
+  if (cfg.pypi) pypiCandidates.add(cfg.pypi);
+  for (const pypi of pypiCandidates) {
+    papersMap[`pypi:${pypi}`] = metrics;
+  }
+
+  // 9. npm
+  const npmCandidates = new Set();
+  if (metrics.npm) npmCandidates.add(metrics.npm);
+  if (cfg.npm) npmCandidates.add(cfg.npm);
+  for (const npm of npmCandidates) {
+    papersMap[`npm:${npm}`] = metrics;
+  }
 }
 
 async function main() {
   const { inputPaths, outputPath } = parseArgs(process.argv.slice(2));
+
+  // Auto-detect local `gh auth token` if no GitHub token env var is set
+  if (!process.env.GH_TRAFFIC_TOKEN && !process.env.GITHUB_TOKEN && !process.env.GH_TOKEN) {
+    try {
+      const { execSync } = require('child_process');
+      const token = execSync('gh auth token', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
+      if (token) process.env.GH_TOKEN = token;
+    } catch (e) {}
+  }
 
   console.log(`[fetch-snapshot] Scanning inputs: ${inputPaths.join(', ')}`);
   const files = findFiles(inputPaths);
@@ -279,7 +320,7 @@ async function main() {
 
   for (let i = 0; i < uniqueConfigs.length; i++) {
     const cfg = uniqueConfigs[i];
-    const label = cfg.title || cfg.doi || cfg.arxiv || cfg.adsBibcode || cfg.zenodo || cfg.github || `Paper #${i + 1}`;
+    const label = cfg.title || cfg.doi || cfg.arxiv || cfg.adsBibcode || cfg.zenodo || cfg.github || cfg.docker || cfg.pypi || cfg.npm || `Paper #${i + 1}`;
     console.log(`[fetch-snapshot] [${i + 1}/${uniqueConfigs.length}] Aggregating metrics: ${label}`);
 
     try {
@@ -292,16 +333,21 @@ async function main() {
 
   const resolvedOutputPath = path.resolve(process.cwd(), outputPath);
 
-  // A throttled or failing source must not make counts drop between runs: citation
-  // totals only grow, so keep the previous snapshot's value when it is higher.
+  // A throttled or failing source must not make counts drop between runs: cumulative
+  // totals only grow, and auth-gated rolling traffic is preserved when unavailable.
   if (fs.existsSync(resolvedOutputPath)) {
     try {
       const previous = JSON.parse(fs.readFileSync(resolvedOutputPath, 'utf8')).papers || {};
       for (const [key, metrics] of Object.entries(papers)) {
         const old = previous[key];
         if (!old) continue;
-        for (const field of ['citations', 'influentialCitations']) {
+        for (const field of ['citations', 'influentialCitations', 'githubStars', 'dockerPulls', 'pypiDownloads', 'npmDownloads']) {
           if (typeof old[field] === 'number' && (metrics[field] === null || metrics[field] < old[field])) {
+            metrics[field] = old[field];
+          }
+        }
+        for (const field of ['githubClones', 'githubUniqueClones', 'githubViews', 'githubUniqueViews', 'adsReads', 'biorxivPdfs', 'biorxivViews']) {
+          if (typeof old[field] === 'number' && metrics[field] === null) {
             metrics[field] = old[field];
           }
         }

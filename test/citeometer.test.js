@@ -644,4 +644,113 @@ describe('Citeometer Test Suite', () => {
       assert.ok(el2.innerHTML.includes('pm-badge-citations'), 'Zero citations still shown by default');
     });
   });
+
+  // =========================================================================
+  // 11. GitHub (Repo + Org + Traffic), Docker Hub, PyPI, and npm Analytics
+  // =========================================================================
+  describe('Software & Repository Analytics (GitHub, Docker Hub, PyPI, npm)', () => {
+    it('aggregates GitHub repository stars, forks, traffic clones/views, Docker pulls, PyPI downloads, and npm downloads in badge & card modes', async () => {
+      setFetchMock(async (url) => {
+        if (url.includes('api.github.com/repos/verificarlo/verificarlo/releases')) {
+          return mockJsonResponse([]);
+        }
+        if (url.includes('api.github.com/repos/verificarlo/verificarlo')) {
+          return mockJsonResponse({
+            full_name: 'verificarlo/verificarlo',
+            stargazers_count: 104,
+            forks_count: 29,
+            html_url: 'https://github.com/verificarlo/verificarlo'
+          });
+        }
+        if (url.includes('hub.docker.com/v2/repositories/verificarlo/verificarlo/')) {
+          return mockJsonResponse({
+            pull_count: 5184,
+            star_count: 1
+          });
+        }
+        if (url.includes('pypistats.org/api/packages/significantdigits/overall')) {
+          return mockJsonResponse({
+            data: [
+              { category: 'without_mirrors', downloads: 1000 },
+              { category: 'without_mirrors', downloads: 809 },
+              { category: 'with_mirrors', downloads: 4320 }
+            ]
+          });
+        }
+        if (url.includes('pypistats.org/api/packages/significantdigits/recent')) {
+          return mockJsonResponse({
+            data: { last_month: 164, last_week: 31, last_day: 0 }
+          });
+        }
+        if (url.includes('api.npmjs.org/downloads/point/last-year/citeometer')) {
+          return mockJsonResponse({
+            downloads: 420
+          });
+        }
+        return mockJsonResponse({}, 404);
+      });
+
+      const elBadge = createMockElement({}, 'DIV');
+      await Citeometer.render(elBadge, {
+        github: 'https://github.com/verificarlo/verificarlo',
+        githubClones: '979',
+        githubViews: '89',
+        docker: 'verificarlo/verificarlo',
+        pypi: 'https://pypi.org/project/significantdigits/',
+        npm: 'citeometer',
+        layout: 'badge'
+      });
+
+      assert.ok(elBadge.innerHTML.includes('pm-badge-github'), 'Must render GitHub stars badge');
+      assert.ok(elBadge.innerHTML.includes('104'), 'Must show 104 stars');
+      assert.ok(elBadge.innerHTML.includes('pm-badge-forks'), 'Must render GitHub forks badge');
+      assert.ok(elBadge.innerHTML.includes('29'), 'Must show 29 forks');
+      assert.ok(elBadge.innerHTML.includes('pm-badge-clones'), 'Must render GitHub 14d clones badge');
+      assert.ok(elBadge.innerHTML.includes('979'), 'Must show 979 clones');
+      assert.ok(elBadge.innerHTML.includes('pm-badge-views'), 'Must render GitHub 14d views badge');
+      assert.ok(elBadge.innerHTML.includes('89'), 'Must show 89 views');
+      assert.ok(elBadge.innerHTML.includes('pm-badge-docker'), 'Must render Docker pulls badge');
+      assert.ok(elBadge.innerHTML.includes('5.2k'), 'Must show 5.2k Docker pulls');
+      assert.ok(elBadge.innerHTML.includes('pm-badge-pypi'), 'Must render PyPI downloads badge');
+      assert.ok(elBadge.innerHTML.includes('1.8k'), 'Must show 1.8k PyPI downloads');
+      assert.ok(elBadge.innerHTML.includes('pm-badge-npm'), 'Must render npm downloads badge');
+      assert.ok(elBadge.innerHTML.includes('420'), 'Must show 420 npm downloads');
+
+      const elCard = createMockElement({}, 'DIV');
+      await Citeometer.render(elCard, {
+        github: 'verificarlo/verificarlo',
+        githubClones: '979',
+        docker: 'verificarlo/verificarlo',
+        pypi: 'significantdigits',
+        npm: 'citeometer',
+        layout: 'card'
+      });
+
+      assert.ok(elCard.innerHTML.includes('Docker Pulls'), 'Card must include Docker Pulls');
+      assert.ok(elCard.innerHTML.includes('PyPI Downloads'), 'Card must include PyPI Downloads');
+      assert.ok(elCard.innerHTML.includes('npm Downloads'), 'Card must include npm Downloads');
+      assert.ok(elCard.innerHTML.includes('Git Clones'), 'Card must include Git Clones');
+      assert.ok(elCard.innerHTML.includes('Docker Hub ↗'), 'Card must link to Docker Hub');
+      assert.ok(elCard.innerHTML.includes('PyPI ↗'), 'Card must link to PyPI');
+      assert.ok(elCard.innerHTML.includes('npm ↗'), 'Card must link to npm');
+    });
+
+    it('aggregates stars and forks across a GitHub organization when github="org"', async () => {
+      setFetchMock(async (url) => {
+        if (url.includes('api.github.com/orgs/LivingPark-MRI/repos')) {
+          return mockJsonResponse([
+            { full_name: 'LivingPark-MRI/livingpark-utils', stargazers_count: 15, forks_count: 40 },
+            { full_name: 'LivingPark-MRI/zee', stargazers_count: 6, forks_count: 17 }
+          ]);
+        }
+        return mockJsonResponse({}, 404);
+      });
+
+      const res = await Citeometer.aggregateMetrics({ github: 'https://github.com/LivingPark-MRI' });
+      assert.strictEqual(res.github, 'LivingPark-MRI');
+      assert.strictEqual(res.githubStars, 21);
+      assert.strictEqual(res.githubForks, 57);
+      assert.strictEqual(res.githubRepos, 2);
+    });
+  });
 });

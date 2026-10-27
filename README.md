@@ -25,7 +25,10 @@ Curated from public academic APIs (including GitHub `awesome-public-apis`, `awes
 | **Zenodo** | `zenodo.org/api/records` | Software & Dataset Downloads & Views | ❌ No (CORS enabled) |
 | **DataCite** | `api.datacite.org/dois` | Dataset/Software Citations, Views, Downloads | ❌ No (CORS enabled) |
 | **OpenCitations** | `opencitations.net/index/api/v2` | Open CC0 DOI Citation Counts | ❌ No (CORS enabled) |
-| **GitHub** | `api.github.com/repos` | Repository Stars & Release Asset Downloads | ❌ No (CORS enabled) |
+| **GitHub** | `api.github.com/repos` & `/orgs` | Stars, Forks, Release Downloads, Org Totals; 14-day Clones & Views (**snapshot**) | ❌ No (CORS enabled; token for 14d traffic) |
+| **Docker Hub** | `hub.docker.com/v2/repositories` | Container Image Pull Counts | ❌ No (snapshot + Shields CORS fallback) |
+| **PyPI** | `pypistats.org/api/packages` | Python Package Downloads (180d & monthly) | ❌ No (snapshot + Shields CORS fallback) |
+| **npm** | `api.npmjs.org/downloads` | JavaScript Package Downloads | ❌ No (CORS enabled) |
 | **NASA ADS** | `api.adsabs.harvard.edu` | Recent 90-day read counts, ADS citations | ❌ No, but **snapshot only** (no CORS) |
 | **bioRxiv** | `api.biorxiv.org` + article metrics page | Published DOI linkage (live); PDF downloads & views (**snapshot only**) | ❌ No |
 
@@ -92,7 +95,12 @@ Provide whatever identifiers you have for your paper:
 | `biorxiv` | bioRxiv / medRxiv DOI | `10.1101/2024.11.11.623071v1` |
 | `biorxiv-pdfs` | Static/cached bioRxiv PDF download count | `1420` |
 | `biorxiv-views` | Static/cached bioRxiv abstract/HTML view count | `4850` |
-| `github` | GitHub `owner/repo` (or repo URL) for software papers | `verificarlo/verificarlo` |
+| `github` | GitHub `owner/repo`, organization (`org`), or repo URL | `verificarlo/verificarlo` |
+| `github-clones` | Static/cached GitHub 14-day git clone count | `979` |
+| `github-views` | Static/cached GitHub 14-day repository view count | `89` |
+| `docker` | Docker Hub `namespace/repository` for container pulls | `verificarlo/verificarlo` |
+| `pypi` | PyPI package name for Python download stats | `significantdigits` |
+| `npm` | npm package name for JavaScript download stats | `citeometer` |
 | `mailto` | Polite-pool contact email for OpenAlex / Crossref | `you@university.edu` |
 | `snapshot-url` | Static JSON snapshot URL for offline/CORS fallback | `dist/citeometer-snapshot.json` |
 | `lazy` | Defer API requests until scrolled into view (`true`/`false`) | `true` |
