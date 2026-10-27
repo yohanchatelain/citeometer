@@ -2,6 +2,7 @@
 
 > How far has your paper travelled? A lightweight, zero-dependency embeddable JavaScript widget and Web Component to gracefully display scholarly publication metrics (citations, recent reads, PDF downloads, and views) on personal academic websites and GitHub Pages.
 
+[![npm version](https://img.shields.io/npm/v/citeometer.svg)](https://www.npmjs.com/package/citeometer)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Zero Dependency](https://img.shields.io/badge/dependencies-0-success.svg)](#)
 [![Live demo](https://img.shields.io/badge/demo-live-1d5fbf.svg)](https://yohanchatelain.github.io/citeometer/)
@@ -37,7 +38,7 @@ Curated from public academic APIs (including GitHub `awesome-public-apis`, `awes
 Add one script tag to your HTML `<head>`. The bundle injects its own styles:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/yohanchatelain/citeometer@v1.1.1/dist/citeometer.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/citeometer@1.1.1/dist/citeometer.min.js" defer></script>
 ```
 
 Prefer to load the stylesheet yourself? Use `dist/citeometer.min.css` alongside `src/citeometer.js`.
@@ -107,7 +108,7 @@ Provide whatever identifiers you have for your paper:
 NASA ADS and bioRxiv usage pages do not allow cross-origin requests, so browsers cannot query them directly. Instead, `scripts/fetch-snapshot.js` scans your pages for `<cite-o-meter>` tags, queries **every** source server-side (ADS is looked up by bibcode, DOI or arXiv ID), and writes one JSON file. The widget merges it with live data.
 
 ```bash
-node scripts/fetch-snapshot.js --input _pages/publications.md --output assets/citeometer-snapshot.json
+npx citeometer --input _pages/publications.md --output assets/citeometer-snapshot.json
 ```
 
 Semantic Scholar throttles anonymous requests, so the script retries on HTTP 429; set an optional `S2_API_KEY` ([free key](https://www.semanticscholar.org/product/api#api-key-form)) to skip the waiting. Citation counts never drop between runs: if a source fails, the previous snapshot's value is kept.
@@ -115,7 +116,7 @@ Semantic Scholar throttles anonymous requests, so the script retries on HTTP 429
 Point the widget at it once, on the script tag. Site-wide options are read from `data-*` attributes:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/yohanchatelain/citeometer@v1.1.1/dist/citeometer.min.js"
+<script src="https://cdn.jsdelivr.net/npm/citeometer@1.1.1/dist/citeometer.min.js"
         data-snapshot-url="/assets/citeometer-snapshot.json"
         data-hide-zero="true" data-lazy="true" defer></script>
 ```
@@ -134,11 +135,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/checkout@v4
-        with: { repository: yohanchatelain/citeometer, ref: v1.1.1, path: .citeometer }
       - uses: actions/setup-node@v4
         with: { node-version: 20 }
-      - run: node .citeometer/scripts/fetch-snapshot.js --input _pages --output assets/citeometer-snapshot.json
+      - run: npx --yes citeometer@1.1.1 --input _pages --output assets/citeometer-snapshot.json
         env:
           S2_API_KEY: ${{ secrets.S2_API_KEY }}  # optional; avoids Semantic Scholar throttling
       - run: |
