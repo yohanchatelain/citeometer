@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T20:28:59.820Z",
+  "generatedAt": "2026-10-27T06:10:53.082Z",
   "papers": {
     "doi:10.1371/journal.pone.0295069": {
       "title": "Longitudinal brain structure changes in Parkinson's disease: a replication study",
@@ -12,17 +12,17 @@
       "publishedDoi": null,
       "isOa": true,
       "oaStatus": "gold",
-      "citations": 9,
+      "citations": 10,
       "influentialCitations": null,
       "openAlexCitations": 8,
-      "crossrefCitations": 9,
+      "crossrefCitations": 10,
       "dataCiteCitations": null,
       "openCitationsCount": 6,
-      "adsReads": 0,
+      "adsReads": null,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2282,
-      "plosPdfs": 1333,
+      "plosTotal": 2283,
+      "plosPdfs": 1334,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -54,7 +54,7 @@
         },
         "crossref": {
           "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
-          "citations": 9,
+          "citations": 10,
           "referencesCount": 25,
           "publisher": "Public Library of Science (PLoS)",
           "url": "https://doi.org/10.1371/journal.pone.0295069"
@@ -66,16 +66,15 @@
           "url": "https://europepmc.org/article/PMC/PMC10830012"
         },
         "plos": {
-          "total": 2282,
-          "pdf": 1333,
+          "total": 2283,
+          "pdf": 1334,
           "html": 716,
           "xml": 233,
           "url": "https://doi.org/10.1371/journal.pone.0295069"
         },
         "ads": {
-          "title": "Longitudinal brain structure changes in Parkinson's disease: A replication study",
-          "recentReads": 0,
-          "citations": 1,
+          "recentReads": null,
+          "citations": null,
           "bibcode": "2024PLoSO..1995069S",
           "url": "https://ui.adsabs.harvard.edu/abs/2024PLoSO..1995069S/metrics"
         },
@@ -96,17 +95,17 @@
       "publishedDoi": null,
       "isOa": true,
       "oaStatus": "gold",
-      "citations": 9,
+      "citations": 10,
       "influentialCitations": null,
       "openAlexCitations": 8,
-      "crossrefCitations": 9,
+      "crossrefCitations": 10,
       "dataCiteCitations": null,
       "openCitationsCount": 6,
-      "adsReads": 0,
+      "adsReads": null,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2282,
-      "plosPdfs": 1333,
+      "plosTotal": 2283,
+      "plosPdfs": 1334,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -138,7 +137,7 @@
         },
         "crossref": {
           "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
-          "citations": 9,
+          "citations": 10,
           "referencesCount": 25,
           "publisher": "Public Library of Science (PLoS)",
           "url": "https://doi.org/10.1371/journal.pone.0295069"
@@ -150,16 +149,15 @@
           "url": "https://europepmc.org/article/PMC/PMC10830012"
         },
         "plos": {
-          "total": 2282,
-          "pdf": 1333,
+          "total": 2283,
+          "pdf": 1334,
           "html": 716,
           "xml": 233,
           "url": "https://doi.org/10.1371/journal.pone.0295069"
         },
         "ads": {
-          "title": "Longitudinal brain structure changes in Parkinson's disease: A replication study",
-          "recentReads": 0,
-          "citations": 1,
+          "recentReads": null,
+          "citations": null,
           "bibcode": "2024PLoSO..1995069S",
           "url": "https://ui.adsabs.harvard.edu/abs/2024PLoSO..1995069S/metrics"
         },
