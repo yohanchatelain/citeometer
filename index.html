@@ -852,9 +852,15 @@
                 <input class="mono" type="text" id="genZenodo" placeholder="8301008" spellcheck="false" autocomplete="off">
               </div>
             </div>
-            <div class="field">
-              <label for="genAds">NASA ADS bibcode</label>
-              <input class="mono" type="text" id="genAds" value="2024PLoSO..1995069S" spellcheck="false" autocomplete="off">
+            <div class="field-row">
+              <div class="field">
+                <label for="genAds">NASA ADS bibcode</label>
+                <input class="mono" type="text" id="genAds" value="2024PLoSO..1995069S" spellcheck="false" autocomplete="off">
+              </div>
+              <div class="field">
+                <label for="genGithub">GitHub repo / org</label>
+                <input class="mono" type="text" id="genGithub" placeholder="verificarlo/verificarlo" spellcheck="false" autocomplete="off">
+              </div>
             </div>
             <fieldset class="field" style="border:0;padding:0;margin:0">
               <legend class="field-label">Layout</legend>
@@ -943,10 +949,12 @@
             <div>
               <h3 class="pub-title serif">Verificarlo: floating-point precision and numerical variability toolkit</h3>
               <p class="pub-authors">Verificarlo maintainers</p>
-              <p class="pub-venue">Zenodo software release <span class="pub-tag">zenodo</span></p>
+              <p class="pub-venue">Open-source software &amp; container <span class="pub-tag">github</span><span class="pub-tag">docker</span><span class="pub-tag">zenodo</span></p>
               <cite-o-meter
                 title="verificarlo/verificarlo: Verificarlo v1.0.0"
                 zenodo="8301008"
+                github="verificarlo/verificarlo"
+                docker="verificarlo/verificarlo"
                 layout="badge">
               </cite-o-meter>
             </div>
@@ -1050,6 +1058,7 @@
         arxiv: val('genArxiv'),
         ads: val('genAds'),
         zenodo: val('genZenodo'),
+        github: val('genGithub'),
         layout: document.querySelector('input[name="layout"]:checked').value
       };
     }
@@ -1063,7 +1072,7 @@
       const preview = document.getElementById('livePreviewContainer');
       preview.innerHTML = '';
       const el = document.createElement('cite-o-meter');
-      for (const key of ['title', 'doi', 'arxiv', 'ads', 'zenodo']) {
+      for (const key of ['title', 'doi', 'arxiv', 'ads', 'zenodo', 'github']) {
         if (cfg[key]) el.setAttribute(key, cfg[key]);
       }
       el.setAttribute('layout', cfg.layout);
@@ -1075,7 +1084,7 @@
 
       // Build tag with properly escaped attributes, one per line
       const attrs = [];
-      for (const key of ['title', 'doi', 'arxiv', 'ads', 'zenodo', 'layout']) {
+      for (const key of ['title', 'doi', 'arxiv', 'ads', 'zenodo', 'github', 'layout']) {
         if (cfg[key]) attrs.push(`  ${key}="${escapeAttr(cfg[key])}"`);
       }
       const snippet = `<cite-o-meter\n${attrs.join('\n')}>\n</cite-o-meter>`;
