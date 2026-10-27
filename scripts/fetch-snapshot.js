@@ -13,6 +13,11 @@
 
 'use strict';
 
+const dns = require('dns');
+if (typeof dns.setDefaultResultOrder === 'function') {
+  dns.setDefaultResultOrder('ipv4first');
+}
+
 const fs = require('fs');
 const path = require('path');
 const Citeometer = require('../src/citeometer.js');
