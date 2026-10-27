@@ -352,6 +352,9 @@ async function main() {
           }
         }
       }
+      for (const [key, old] of Object.entries(previous)) {
+        if (!papers[key]) papers[key] = old;
+      }
     } catch (err) {
       console.warn('[fetch-snapshot] Could not read previous snapshot:', err.message);
     }
