@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-07T06:07:05.076Z",
+  "generatedAt": "2026-11-08T06:06:54.196Z",
   "papers": {
     "doi:10.1371/journal.pone.0295069": {
       "title": "Longitudinal brain structure changes in Parkinson's disease: a replication study",
@@ -71,6 +71,12 @@
           "referencesCount": 25,
           "publisher": "Public Library of Science (PLoS)",
           "url": "https://doi.org/10.1371/journal.pone.0295069"
+        },
+        "europePmc": {
+          "title": "Longitudinal brain structure changes in Parkinson's disease: A replication study.",
+          "citations": 8,
+          "pmcid": "PMC10830012",
+          "url": "https://europepmc.org/article/PMC/PMC10830012"
         },
         "plos": {
           "total": 2314,
@@ -163,6 +169,12 @@
           "publisher": "Public Library of Science (PLoS)",
           "url": "https://doi.org/10.1371/journal.pone.0295069"
         },
+        "europePmc": {
+          "title": "Longitudinal brain structure changes in Parkinson's disease: A replication study.",
+          "citations": 8,
+          "pmcid": "PMC10830012",
+          "url": "https://europepmc.org/article/PMC/PMC10830012"
+        },
         "plos": {
           "total": 2314,
           "pdf": 1357,
@@ -225,13 +237,6 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
-        "semanticScholar": {
-          "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
-          "citations": 0,
-          "influentialCitations": 0,
-          "year": 2026,
-          "url": "https://www.semanticscholar.org/paper/0110396e7d85c64314ad096bfcdca36e02301b0a"
-        },
         "openAlex": {
           "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
           "citations": 0,
@@ -298,13 +303,6 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
-        "semanticScholar": {
-          "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
-          "citations": 0,
-          "influentialCitations": 0,
-          "year": 2026,
-          "url": "https://www.semanticscholar.org/paper/0110396e7d85c64314ad096bfcdca36e02301b0a"
-        },
         "openAlex": {
           "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
           "citations": 0,
@@ -352,7 +350,7 @@
       "adsReads": 269,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 1970,
+      "plosTotal": 1972,
       "plosPdfs": 1332,
       "zenodoDownloads": null,
       "zenodoViews": null,
@@ -371,6 +369,13 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
+        "semanticScholar": {
+          "title": "Numerical stability of DeepGOPlus inference",
+          "citations": 4,
+          "influentialCitations": 0,
+          "year": 2022,
+          "url": "https://www.semanticscholar.org/paper/30d63561bc582cded3e6cd9c79491608ed0a7669"
+        },
         "openAlex": {
           "title": "Numerical stability of DeepGOPlus inference",
           "citations": 3,
@@ -407,10 +412,10 @@
           "url": "https://europepmc.org/article/PMC/PMC10824456"
         },
         "plos": {
-          "total": 1970,
+          "total": 1972,
           "pdf": 1332,
           "html": 355,
-          "xml": 283,
+          "xml": 285,
           "url": "https://doi.org/10.1371/journal.pone.0296725"
         },
         "ads": {
@@ -448,7 +453,7 @@
       "adsReads": 269,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 1970,
+      "plosTotal": 1972,
       "plosPdfs": 1332,
       "zenodoDownloads": null,
       "zenodoViews": null,
@@ -467,6 +472,13 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
+        "semanticScholar": {
+          "title": "Numerical stability of DeepGOPlus inference",
+          "citations": 4,
+          "influentialCitations": 0,
+          "year": 2022,
+          "url": "https://www.semanticscholar.org/paper/30d63561bc582cded3e6cd9c79491608ed0a7669"
+        },
         "openAlex": {
           "title": "Numerical stability of DeepGOPlus inference",
           "citations": 3,
@@ -503,10 +515,10 @@
           "url": "https://europepmc.org/article/PMC/PMC10824456"
         },
         "plos": {
-          "total": 1970,
+          "total": 1972,
           "pdf": 1332,
           "html": 355,
-          "xml": 283,
+          "xml": 285,
           "url": "https://doi.org/10.1371/journal.pone.0296725"
         },
         "ads": {
@@ -551,33 +563,21 @@
       "dataCiteDownloads": null,
       "dataCiteViews": null,
       "githubStars": 104,
-      "githubForks": 29,
-      "githubDownloads": 49,
+      "githubForks": null,
+      "githubDownloads": null,
       "githubClones": 979,
       "githubUniqueClones": 254,
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5360,
+      "dockerPulls": 5361,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
-        "github": {
-          "title": "verificarlo/verificarlo",
-          "description": "A tool for debugging and assessing floating point precision and reproducibility.",
-          "stars": 104,
-          "forks": 29,
-          "downloads": 49,
-          "clones": null,
-          "uniqueClones": null,
-          "views": null,
-          "uniqueViews": null,
-          "url": "https://github.com/verificarlo/verificarlo"
-        },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5360,
+          "pulls": 5361,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
@@ -613,33 +613,21 @@
       "dataCiteDownloads": null,
       "dataCiteViews": null,
       "githubStars": 104,
-      "githubForks": 29,
-      "githubDownloads": 49,
+      "githubForks": null,
+      "githubDownloads": null,
       "githubClones": 979,
       "githubUniqueClones": 254,
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5360,
+      "dockerPulls": 5361,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
-        "github": {
-          "title": "verificarlo/verificarlo",
-          "description": "A tool for debugging and assessing floating point precision and reproducibility.",
-          "stars": 104,
-          "forks": 29,
-          "downloads": 49,
-          "clones": null,
-          "uniqueClones": null,
-          "views": null,
-          "uniqueViews": null,
-          "url": "https://github.com/verificarlo/verificarlo"
-        },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5360,
+          "pulls": 5361,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
@@ -675,33 +663,21 @@
       "dataCiteDownloads": null,
       "dataCiteViews": null,
       "githubStars": 104,
-      "githubForks": 29,
-      "githubDownloads": 49,
+      "githubForks": null,
+      "githubDownloads": null,
       "githubClones": 979,
       "githubUniqueClones": 254,
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5360,
+      "dockerPulls": 5361,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
-        "github": {
-          "title": "verificarlo/verificarlo",
-          "description": "A tool for debugging and assessing floating point precision and reproducibility.",
-          "stars": 104,
-          "forks": 29,
-          "downloads": 49,
-          "clones": null,
-          "uniqueClones": null,
-          "views": null,
-          "uniqueViews": null,
-          "url": "https://github.com/verificarlo/verificarlo"
-        },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5360,
+          "pulls": 5361,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
