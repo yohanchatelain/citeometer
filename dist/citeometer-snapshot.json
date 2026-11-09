@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-08T06:06:54.196Z",
+  "generatedAt": "2026-11-09T06:09:25.527Z",
   "papers": {
     "doi:10.1371/journal.pone.0295069": {
       "title": "Longitudinal brain structure changes in Parkinson's disease: a replication study",
@@ -24,8 +24,8 @@
       "adsReads": 0,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2314,
-      "plosPdfs": 1357,
+      "plosTotal": 2316,
+      "plosPdfs": 1358,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -43,6 +43,13 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
+        "semanticScholar": {
+          "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
+          "citations": 10,
+          "influentialCitations": 0,
+          "year": 2023,
+          "url": "https://www.semanticscholar.org/paper/eafe98571ec6ec98e2eaf8a3feab819b7660c57e"
+        },
         "openAlex": {
           "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
           "citations": 9,
@@ -79,10 +86,10 @@
           "url": "https://europepmc.org/article/PMC/PMC10830012"
         },
         "plos": {
-          "total": 2314,
-          "pdf": 1357,
+          "total": 2316,
+          "pdf": 1358,
           "html": 720,
-          "xml": 237,
+          "xml": 238,
           "url": "https://doi.org/10.1371/journal.pone.0295069"
         },
         "ads": {
@@ -121,8 +128,8 @@
       "adsReads": 0,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2314,
-      "plosPdfs": 1357,
+      "plosTotal": 2316,
+      "plosPdfs": 1358,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -140,6 +147,13 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
+        "semanticScholar": {
+          "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
+          "citations": 10,
+          "influentialCitations": 0,
+          "year": 2023,
+          "url": "https://www.semanticscholar.org/paper/eafe98571ec6ec98e2eaf8a3feab819b7660c57e"
+        },
         "openAlex": {
           "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
           "citations": 9,
@@ -176,10 +190,10 @@
           "url": "https://europepmc.org/article/PMC/PMC10830012"
         },
         "plos": {
-          "total": 2314,
-          "pdf": 1357,
+          "total": 2316,
+          "pdf": 1358,
           "html": 720,
-          "xml": 237,
+          "xml": 238,
           "url": "https://doi.org/10.1371/journal.pone.0295069"
         },
         "ads": {
@@ -350,8 +364,8 @@
       "adsReads": 269,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 1972,
-      "plosPdfs": 1332,
+      "plosTotal": 1976,
+      "plosPdfs": 1334,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -412,10 +426,10 @@
           "url": "https://europepmc.org/article/PMC/PMC10824456"
         },
         "plos": {
-          "total": 1972,
-          "pdf": 1332,
+          "total": 1976,
+          "pdf": 1334,
           "html": 355,
-          "xml": 285,
+          "xml": 287,
           "url": "https://doi.org/10.1371/journal.pone.0296725"
         },
         "ads": {
@@ -453,8 +467,8 @@
       "adsReads": 269,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 1972,
-      "plosPdfs": 1332,
+      "plosTotal": 1976,
+      "plosPdfs": 1334,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -515,10 +529,10 @@
           "url": "https://europepmc.org/article/PMC/PMC10824456"
         },
         "plos": {
-          "total": 1972,
-          "pdf": 1332,
+          "total": 1976,
+          "pdf": 1334,
           "html": 355,
-          "xml": 285,
+          "xml": 287,
           "url": "https://doi.org/10.1371/journal.pone.0296725"
         },
         "ads": {
@@ -563,8 +577,8 @@
       "dataCiteDownloads": null,
       "dataCiteViews": null,
       "githubStars": 104,
-      "githubForks": null,
-      "githubDownloads": null,
+      "githubForks": 29,
+      "githubDownloads": 49,
       "githubClones": 979,
       "githubUniqueClones": 254,
       "githubViews": 89,
@@ -575,6 +589,18 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
+        "github": {
+          "title": "verificarlo/verificarlo",
+          "description": "A tool for debugging and assessing floating point precision and reproducibility.",
+          "stars": 104,
+          "forks": 29,
+          "downloads": 49,
+          "clones": null,
+          "uniqueClones": null,
+          "views": null,
+          "uniqueViews": null,
+          "url": "https://github.com/verificarlo/verificarlo"
+        },
         "docker": {
           "title": "verificarlo/verificarlo",
           "pulls": 5361,
@@ -613,8 +639,8 @@
       "dataCiteDownloads": null,
       "dataCiteViews": null,
       "githubStars": 104,
-      "githubForks": null,
-      "githubDownloads": null,
+      "githubForks": 29,
+      "githubDownloads": 49,
       "githubClones": 979,
       "githubUniqueClones": 254,
       "githubViews": 89,
@@ -625,6 +651,18 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
+        "github": {
+          "title": "verificarlo/verificarlo",
+          "description": "A tool for debugging and assessing floating point precision and reproducibility.",
+          "stars": 104,
+          "forks": 29,
+          "downloads": 49,
+          "clones": null,
+          "uniqueClones": null,
+          "views": null,
+          "uniqueViews": null,
+          "url": "https://github.com/verificarlo/verificarlo"
+        },
         "docker": {
           "title": "verificarlo/verificarlo",
           "pulls": 5361,
@@ -663,8 +701,8 @@
       "dataCiteDownloads": null,
       "dataCiteViews": null,
       "githubStars": 104,
-      "githubForks": null,
-      "githubDownloads": null,
+      "githubForks": 29,
+      "githubDownloads": 49,
       "githubClones": 979,
       "githubUniqueClones": 254,
       "githubViews": 89,
@@ -675,6 +713,18 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
+        "github": {
+          "title": "verificarlo/verificarlo",
+          "description": "A tool for debugging and assessing floating point precision and reproducibility.",
+          "stars": 104,
+          "forks": 29,
+          "downloads": 49,
+          "clones": null,
+          "uniqueClones": null,
+          "views": null,
+          "uniqueViews": null,
+          "url": "https://github.com/verificarlo/verificarlo"
+        },
         "docker": {
           "title": "verificarlo/verificarlo",
           "pulls": 5361,
