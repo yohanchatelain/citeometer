@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-09T06:09:25.527Z",
+  "generatedAt": "2026-11-10T06:07:14.357Z",
   "papers": {
     "doi:10.1371/journal.pone.0295069": {
       "title": "Longitudinal brain structure changes in Parkinson's disease: a replication study",
@@ -24,8 +24,8 @@
       "adsReads": 0,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2316,
-      "plosPdfs": 1358,
+      "plosTotal": 2319,
+      "plosPdfs": 1359,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -86,10 +86,10 @@
           "url": "https://europepmc.org/article/PMC/PMC10830012"
         },
         "plos": {
-          "total": 2316,
-          "pdf": 1358,
-          "html": 720,
-          "xml": 238,
+          "total": 2319,
+          "pdf": 1359,
+          "html": 721,
+          "xml": 239,
           "url": "https://doi.org/10.1371/journal.pone.0295069"
         },
         "ads": {
@@ -128,8 +128,8 @@
       "adsReads": 0,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2316,
-      "plosPdfs": 1358,
+      "plosTotal": 2319,
+      "plosPdfs": 1359,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -190,10 +190,10 @@
           "url": "https://europepmc.org/article/PMC/PMC10830012"
         },
         "plos": {
-          "total": 2316,
-          "pdf": 1358,
-          "html": 720,
-          "xml": 238,
+          "total": 2319,
+          "pdf": 1359,
+          "html": 721,
+          "xml": 239,
           "url": "https://doi.org/10.1371/journal.pone.0295069"
         },
         "ads": {
@@ -364,7 +364,7 @@
       "adsReads": 269,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 1976,
+      "plosTotal": 1977,
       "plosPdfs": 1334,
       "zenodoDownloads": null,
       "zenodoViews": null,
@@ -383,13 +383,6 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
-        "semanticScholar": {
-          "title": "Numerical stability of DeepGOPlus inference",
-          "citations": 4,
-          "influentialCitations": 0,
-          "year": 2022,
-          "url": "https://www.semanticscholar.org/paper/30d63561bc582cded3e6cd9c79491608ed0a7669"
-        },
         "openAlex": {
           "title": "Numerical stability of DeepGOPlus inference",
           "citations": 3,
@@ -426,10 +419,10 @@
           "url": "https://europepmc.org/article/PMC/PMC10824456"
         },
         "plos": {
-          "total": 1976,
+          "total": 1977,
           "pdf": 1334,
           "html": 355,
-          "xml": 287,
+          "xml": 288,
           "url": "https://doi.org/10.1371/journal.pone.0296725"
         },
         "ads": {
@@ -467,7 +460,7 @@
       "adsReads": 269,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 1976,
+      "plosTotal": 1977,
       "plosPdfs": 1334,
       "zenodoDownloads": null,
       "zenodoViews": null,
@@ -486,13 +479,6 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
-        "semanticScholar": {
-          "title": "Numerical stability of DeepGOPlus inference",
-          "citations": 4,
-          "influentialCitations": 0,
-          "year": 2022,
-          "url": "https://www.semanticscholar.org/paper/30d63561bc582cded3e6cd9c79491608ed0a7669"
-        },
         "openAlex": {
           "title": "Numerical stability of DeepGOPlus inference",
           "citations": 3,
@@ -529,10 +515,10 @@
           "url": "https://europepmc.org/article/PMC/PMC10824456"
         },
         "plos": {
-          "total": 1976,
+          "total": 1977,
           "pdf": 1334,
           "html": 355,
-          "xml": 287,
+          "xml": 288,
           "url": "https://doi.org/10.1371/journal.pone.0296725"
         },
         "ads": {
