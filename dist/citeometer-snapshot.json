@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-10T06:07:14.357Z",
+  "generatedAt": "2026-11-11T06:07:07.426Z",
   "papers": {
     "doi:10.1371/journal.pone.0295069": {
       "title": "Longitudinal brain structure changes in Parkinson's disease: a replication study",
@@ -24,8 +24,8 @@
       "adsReads": 0,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2319,
-      "plosPdfs": 1359,
+      "plosTotal": 2323,
+      "plosPdfs": 1362,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -86,10 +86,10 @@
           "url": "https://europepmc.org/article/PMC/PMC10830012"
         },
         "plos": {
-          "total": 2319,
-          "pdf": 1359,
+          "total": 2323,
+          "pdf": 1362,
           "html": 721,
-          "xml": 239,
+          "xml": 240,
           "url": "https://doi.org/10.1371/journal.pone.0295069"
         },
         "ads": {
@@ -128,8 +128,8 @@
       "adsReads": 0,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2319,
-      "plosPdfs": 1359,
+      "plosTotal": 2323,
+      "plosPdfs": 1362,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -190,10 +190,10 @@
           "url": "https://europepmc.org/article/PMC/PMC10830012"
         },
         "plos": {
-          "total": 2319,
-          "pdf": 1359,
+          "total": 2323,
+          "pdf": 1362,
           "html": 721,
-          "xml": 239,
+          "xml": 240,
           "url": "https://doi.org/10.1371/journal.pone.0295069"
         },
         "ads": {
@@ -223,7 +223,7 @@
       "publishedDoi": null,
       "isOa": true,
       "oaStatus": "green",
-      "citations": 0,
+      "citations": 2,
       "influentialCitations": 0,
       "openAlexCitations": 0,
       "crossrefCitations": null,
@@ -251,6 +251,13 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
+        "semanticScholar": {
+          "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
+          "citations": 2,
+          "influentialCitations": 0,
+          "year": 2026,
+          "url": "https://www.semanticscholar.org/paper/0110396e7d85c64314ad096bfcdca36e02301b0a"
+        },
         "openAlex": {
           "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
           "citations": 0,
@@ -289,7 +296,7 @@
       "publishedDoi": null,
       "isOa": true,
       "oaStatus": "green",
-      "citations": 0,
+      "citations": 2,
       "influentialCitations": 0,
       "openAlexCitations": 0,
       "crossrefCitations": null,
@@ -317,6 +324,13 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
+        "semanticScholar": {
+          "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
+          "citations": 2,
+          "influentialCitations": 0,
+          "year": 2026,
+          "url": "https://www.semanticscholar.org/paper/0110396e7d85c64314ad096bfcdca36e02301b0a"
+        },
         "openAlex": {
           "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
           "citations": 0,
@@ -364,8 +378,8 @@
       "adsReads": 269,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 1977,
-      "plosPdfs": 1334,
+      "plosTotal": 1983,
+      "plosPdfs": 1340,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -383,6 +397,13 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
+        "semanticScholar": {
+          "title": "Numerical stability of DeepGOPlus inference",
+          "citations": 4,
+          "influentialCitations": 0,
+          "year": 2022,
+          "url": "https://www.semanticscholar.org/paper/30d63561bc582cded3e6cd9c79491608ed0a7669"
+        },
         "openAlex": {
           "title": "Numerical stability of DeepGOPlus inference",
           "citations": 3,
@@ -419,8 +440,8 @@
           "url": "https://europepmc.org/article/PMC/PMC10824456"
         },
         "plos": {
-          "total": 1977,
-          "pdf": 1334,
+          "total": 1983,
+          "pdf": 1340,
           "html": 355,
           "xml": 288,
           "url": "https://doi.org/10.1371/journal.pone.0296725"
@@ -460,8 +481,8 @@
       "adsReads": 269,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 1977,
-      "plosPdfs": 1334,
+      "plosTotal": 1983,
+      "plosPdfs": 1340,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -479,6 +500,13 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
+        "semanticScholar": {
+          "title": "Numerical stability of DeepGOPlus inference",
+          "citations": 4,
+          "influentialCitations": 0,
+          "year": 2022,
+          "url": "https://www.semanticscholar.org/paper/30d63561bc582cded3e6cd9c79491608ed0a7669"
+        },
         "openAlex": {
           "title": "Numerical stability of DeepGOPlus inference",
           "citations": 3,
@@ -515,8 +543,8 @@
           "url": "https://europepmc.org/article/PMC/PMC10824456"
         },
         "plos": {
-          "total": 1977,
-          "pdf": 1334,
+          "total": 1983,
+          "pdf": 1340,
           "html": 355,
           "xml": 288,
           "url": "https://doi.org/10.1371/journal.pone.0296725"
@@ -570,7 +598,7 @@
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5361,
+      "dockerPulls": 5362,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
@@ -589,7 +617,7 @@
         },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5361,
+          "pulls": 5362,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
@@ -632,7 +660,7 @@
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5361,
+      "dockerPulls": 5362,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
@@ -651,7 +679,7 @@
         },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5361,
+          "pulls": 5362,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
@@ -694,7 +722,7 @@
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5361,
+      "dockerPulls": 5362,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
@@ -713,7 +741,7 @@
         },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5361,
+          "pulls": 5362,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
