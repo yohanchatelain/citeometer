@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-11T06:07:07.426Z",
+  "generatedAt": "2026-11-12T06:07:38.913Z",
   "papers": {
     "doi:10.1371/journal.pone.0295069": {
       "title": "Longitudinal brain structure changes in Parkinson's disease: a replication study",
@@ -24,8 +24,8 @@
       "adsReads": 0,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2323,
-      "plosPdfs": 1362,
+      "plosTotal": 2325,
+      "plosPdfs": 1364,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -86,8 +86,8 @@
           "url": "https://europepmc.org/article/PMC/PMC10830012"
         },
         "plos": {
-          "total": 2323,
-          "pdf": 1362,
+          "total": 2325,
+          "pdf": 1364,
           "html": 721,
           "xml": 240,
           "url": "https://doi.org/10.1371/journal.pone.0295069"
@@ -128,8 +128,8 @@
       "adsReads": 0,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2323,
-      "plosPdfs": 1362,
+      "plosTotal": 2325,
+      "plosPdfs": 1364,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -190,8 +190,8 @@
           "url": "https://europepmc.org/article/PMC/PMC10830012"
         },
         "plos": {
-          "total": 2323,
-          "pdf": 1362,
+          "total": 2325,
+          "pdf": 1364,
           "html": 721,
           "xml": 240,
           "url": "https://doi.org/10.1371/journal.pone.0295069"
@@ -251,13 +251,6 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
-        "semanticScholar": {
-          "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
-          "citations": 2,
-          "influentialCitations": 0,
-          "year": 2026,
-          "url": "https://www.semanticscholar.org/paper/0110396e7d85c64314ad096bfcdca36e02301b0a"
-        },
         "openAlex": {
           "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
           "citations": 0,
@@ -324,13 +317,6 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
-        "semanticScholar": {
-          "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
-          "citations": 2,
-          "influentialCitations": 0,
-          "year": 2026,
-          "url": "https://www.semanticscholar.org/paper/0110396e7d85c64314ad096bfcdca36e02301b0a"
-        },
         "openAlex": {
           "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
           "citations": 0,
@@ -378,8 +364,8 @@
       "adsReads": 269,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 1983,
-      "plosPdfs": 1340,
+      "plosTotal": 1987,
+      "plosPdfs": 1344,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -440,8 +426,8 @@
           "url": "https://europepmc.org/article/PMC/PMC10824456"
         },
         "plos": {
-          "total": 1983,
-          "pdf": 1340,
+          "total": 1987,
+          "pdf": 1344,
           "html": 355,
           "xml": 288,
           "url": "https://doi.org/10.1371/journal.pone.0296725"
@@ -481,8 +467,8 @@
       "adsReads": 269,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 1983,
-      "plosPdfs": 1340,
+      "plosTotal": 1987,
+      "plosPdfs": 1344,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -543,8 +529,8 @@
           "url": "https://europepmc.org/article/PMC/PMC10824456"
         },
         "plos": {
-          "total": 1983,
-          "pdf": 1340,
+          "total": 1987,
+          "pdf": 1344,
           "html": 355,
           "xml": 288,
           "url": "https://doi.org/10.1371/journal.pone.0296725"
@@ -598,7 +584,7 @@
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5362,
+      "dockerPulls": 5372,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
@@ -617,7 +603,7 @@
         },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5362,
+          "pulls": 5372,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
@@ -660,7 +646,7 @@
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5362,
+      "dockerPulls": 5372,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
@@ -679,7 +665,7 @@
         },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5362,
+          "pulls": 5372,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
@@ -722,7 +708,7 @@
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5362,
+      "dockerPulls": 5372,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
@@ -741,7 +727,7 @@
         },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5362,
+          "pulls": 5372,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
