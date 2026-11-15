@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T06:06:29.678Z",
+  "generatedAt": "2026-11-15T06:06:57.956Z",
   "papers": {
     "doi:10.1371/journal.pone.0295069": {
       "title": "Longitudinal brain structure changes in Parkinson's disease: a replication study",
@@ -24,8 +24,8 @@
       "adsReads": 0,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2331,
-      "plosPdfs": 1367,
+      "plosTotal": 2336,
+      "plosPdfs": 1368,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -86,10 +86,10 @@
           "url": "https://europepmc.org/article/PMC/PMC10830012"
         },
         "plos": {
-          "total": 2331,
-          "pdf": 1367,
-          "html": 722,
-          "xml": 242,
+          "total": 2336,
+          "pdf": 1368,
+          "html": 723,
+          "xml": 245,
           "url": "https://doi.org/10.1371/journal.pone.0295069"
         },
         "ads": {
@@ -128,8 +128,8 @@
       "adsReads": 0,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2331,
-      "plosPdfs": 1367,
+      "plosTotal": 2336,
+      "plosPdfs": 1368,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -190,10 +190,10 @@
           "url": "https://europepmc.org/article/PMC/PMC10830012"
         },
         "plos": {
-          "total": 2331,
-          "pdf": 1367,
-          "html": 722,
-          "xml": 242,
+          "total": 2336,
+          "pdf": 1368,
+          "html": 723,
+          "xml": 245,
           "url": "https://doi.org/10.1371/journal.pone.0295069"
         },
         "ads": {
@@ -388,8 +388,8 @@
       "adsReads": 269,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 1995,
-      "plosPdfs": 1347,
+      "plosTotal": 2001,
+      "plosPdfs": 1352,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -450,10 +450,10 @@
           "url": "https://europepmc.org/article/PMC/PMC10824456"
         },
         "plos": {
-          "total": 1995,
-          "pdf": 1347,
+          "total": 2001,
+          "pdf": 1352,
           "html": 356,
-          "xml": 292,
+          "xml": 293,
           "url": "https://doi.org/10.1371/journal.pone.0296725"
         },
         "ads": {
@@ -491,8 +491,8 @@
       "adsReads": 269,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 1995,
-      "plosPdfs": 1347,
+      "plosTotal": 2001,
+      "plosPdfs": 1352,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -553,10 +553,10 @@
           "url": "https://europepmc.org/article/PMC/PMC10824456"
         },
         "plos": {
-          "total": 1995,
-          "pdf": 1347,
+          "total": 2001,
+          "pdf": 1352,
           "html": 356,
-          "xml": 292,
+          "xml": 293,
           "url": "https://doi.org/10.1371/journal.pone.0296725"
         },
         "ads": {
@@ -608,7 +608,7 @@
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5387,
+      "dockerPulls": 5389,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
@@ -627,7 +627,7 @@
         },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5387,
+          "pulls": 5389,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
@@ -670,7 +670,7 @@
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5387,
+      "dockerPulls": 5389,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
@@ -689,7 +689,7 @@
         },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5387,
+          "pulls": 5389,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
@@ -732,7 +732,7 @@
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5387,
+      "dockerPulls": 5389,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
@@ -751,7 +751,7 @@
         },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5387,
+          "pulls": 5389,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
