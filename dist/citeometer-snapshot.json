@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-16T06:11:31.320Z",
+  "generatedAt": "2026-11-17T06:07:18.677Z",
   "papers": {
     "doi:10.1371/journal.pone.0295069": {
       "title": "Longitudinal brain structure changes in Parkinson's disease: a replication study",
@@ -24,8 +24,8 @@
       "adsReads": 0,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2340,
-      "plosPdfs": 1370,
+      "plosTotal": 2344,
+      "plosPdfs": 1371,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -43,6 +43,13 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
+        "semanticScholar": {
+          "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
+          "citations": 10,
+          "influentialCitations": 0,
+          "year": 2023,
+          "url": "https://www.semanticscholar.org/paper/eafe98571ec6ec98e2eaf8a3feab819b7660c57e"
+        },
         "openAlex": {
           "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
           "citations": 10,
@@ -79,10 +86,10 @@
           "url": "https://europepmc.org/article/PMC/PMC10830012"
         },
         "plos": {
-          "total": 2340,
-          "pdf": 1370,
+          "total": 2344,
+          "pdf": 1371,
           "html": 723,
-          "xml": 247,
+          "xml": 250,
           "url": "https://doi.org/10.1371/journal.pone.0295069"
         },
         "ads": {
@@ -121,8 +128,8 @@
       "adsReads": 0,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2340,
-      "plosPdfs": 1370,
+      "plosTotal": 2344,
+      "plosPdfs": 1371,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -140,6 +147,13 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
+        "semanticScholar": {
+          "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
+          "citations": 10,
+          "influentialCitations": 0,
+          "year": 2023,
+          "url": "https://www.semanticscholar.org/paper/eafe98571ec6ec98e2eaf8a3feab819b7660c57e"
+        },
         "openAlex": {
           "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
           "citations": 10,
@@ -176,10 +190,10 @@
           "url": "https://europepmc.org/article/PMC/PMC10830012"
         },
         "plos": {
-          "total": 2340,
-          "pdf": 1370,
+          "total": 2344,
+          "pdf": 1371,
           "html": 723,
-          "xml": 247,
+          "xml": 250,
           "url": "https://doi.org/10.1371/journal.pone.0295069"
         },
         "ads": {
@@ -237,13 +251,6 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
-        "semanticScholar": {
-          "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
-          "citations": 2,
-          "influentialCitations": 0,
-          "year": 2026,
-          "url": "https://www.semanticscholar.org/paper/0110396e7d85c64314ad096bfcdca36e02301b0a"
-        },
         "openAlex": {
           "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
           "citations": 2,
@@ -315,13 +322,6 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
-        "semanticScholar": {
-          "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
-          "citations": 2,
-          "influentialCitations": 0,
-          "year": 2026,
-          "url": "https://www.semanticscholar.org/paper/0110396e7d85c64314ad096bfcdca36e02301b0a"
-        },
         "openAlex": {
           "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
           "citations": 2,
@@ -374,8 +374,8 @@
       "adsReads": 269,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2008,
-      "plosPdfs": 1357,
+      "plosTotal": 2009,
+      "plosPdfs": 1358,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -393,6 +393,13 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
+        "semanticScholar": {
+          "title": "Numerical stability of DeepGOPlus inference",
+          "citations": 4,
+          "influentialCitations": 0,
+          "year": 2022,
+          "url": "https://www.semanticscholar.org/paper/30d63561bc582cded3e6cd9c79491608ed0a7669"
+        },
         "openAlex": {
           "title": "Numerical stability of DeepGOPlus inference",
           "citations": 3,
@@ -422,9 +429,15 @@
           "publisher": "Public Library of Science (PLoS)",
           "url": "https://doi.org/10.1371/journal.pone.0296725"
         },
+        "europePmc": {
+          "title": "Numerical stability of DeepGOPlus inference.",
+          "citations": 0,
+          "pmcid": "PMC10824456",
+          "url": "https://europepmc.org/article/PMC/PMC10824456"
+        },
         "plos": {
-          "total": 2008,
-          "pdf": 1357,
+          "total": 2009,
+          "pdf": 1358,
           "html": 356,
           "xml": 295,
           "url": "https://doi.org/10.1371/journal.pone.0296725"
@@ -464,8 +477,8 @@
       "adsReads": 269,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2008,
-      "plosPdfs": 1357,
+      "plosTotal": 2009,
+      "plosPdfs": 1358,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -483,6 +496,13 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
+        "semanticScholar": {
+          "title": "Numerical stability of DeepGOPlus inference",
+          "citations": 4,
+          "influentialCitations": 0,
+          "year": 2022,
+          "url": "https://www.semanticscholar.org/paper/30d63561bc582cded3e6cd9c79491608ed0a7669"
+        },
         "openAlex": {
           "title": "Numerical stability of DeepGOPlus inference",
           "citations": 3,
@@ -512,9 +532,15 @@
           "publisher": "Public Library of Science (PLoS)",
           "url": "https://doi.org/10.1371/journal.pone.0296725"
         },
+        "europePmc": {
+          "title": "Numerical stability of DeepGOPlus inference.",
+          "citations": 0,
+          "pmcid": "PMC10824456",
+          "url": "https://europepmc.org/article/PMC/PMC10824456"
+        },
         "plos": {
-          "total": 2008,
-          "pdf": 1357,
+          "total": 2009,
+          "pdf": 1358,
           "html": 356,
           "xml": 295,
           "url": "https://doi.org/10.1371/journal.pone.0296725"
@@ -562,7 +588,7 @@
       "dataCiteViews": null,
       "githubStars": 104,
       "githubForks": 29,
-      "githubDownloads": 49,
+      "githubDownloads": 50,
       "githubClones": 979,
       "githubUniqueClones": 254,
       "githubViews": 89,
@@ -578,7 +604,7 @@
           "description": "A tool for debugging and assessing floating point precision and reproducibility.",
           "stars": 104,
           "forks": 29,
-          "downloads": 49,
+          "downloads": 50,
           "clones": null,
           "uniqueClones": null,
           "views": null,
@@ -624,7 +650,7 @@
       "dataCiteViews": null,
       "githubStars": 104,
       "githubForks": 29,
-      "githubDownloads": 49,
+      "githubDownloads": 50,
       "githubClones": 979,
       "githubUniqueClones": 254,
       "githubViews": 89,
@@ -640,7 +666,7 @@
           "description": "A tool for debugging and assessing floating point precision and reproducibility.",
           "stars": 104,
           "forks": 29,
-          "downloads": 49,
+          "downloads": 50,
           "clones": null,
           "uniqueClones": null,
           "views": null,
@@ -686,7 +712,7 @@
       "dataCiteViews": null,
       "githubStars": 104,
       "githubForks": 29,
-      "githubDownloads": 49,
+      "githubDownloads": 50,
       "githubClones": 979,
       "githubUniqueClones": 254,
       "githubViews": 89,
@@ -702,7 +728,7 @@
           "description": "A tool for debugging and assessing floating point precision and reproducibility.",
           "stars": 104,
           "forks": 29,
-          "downloads": 49,
+          "downloads": 50,
           "clones": null,
           "uniqueClones": null,
           "views": null,
