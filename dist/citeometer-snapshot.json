@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-19T06:07:39.374Z",
+  "generatedAt": "2026-11-20T06:07:09.252Z",
   "papers": {
     "doi:10.1371/journal.pone.0295069": {
       "title": "Longitudinal brain structure changes in Parkinson's disease: a replication study",
@@ -24,8 +24,8 @@
       "adsReads": 0,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2352,
-      "plosPdfs": 1378,
+      "plosTotal": 2360,
+      "plosPdfs": 1385,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -45,7 +45,7 @@
       "sources": {
         "semanticScholar": {
           "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
-          "citations": 10,
+          "citations": 11,
           "influentialCitations": 0,
           "year": 2023,
           "url": "https://www.semanticscholar.org/paper/eafe98571ec6ec98e2eaf8a3feab819b7660c57e"
@@ -79,17 +79,11 @@
           "publisher": "Public Library of Science (PLoS)",
           "url": "https://doi.org/10.1371/journal.pone.0295069"
         },
-        "europePmc": {
-          "title": "Longitudinal brain structure changes in Parkinson's disease: A replication study.",
-          "citations": 8,
-          "pmcid": "PMC10830012",
-          "url": "https://europepmc.org/article/PMC/PMC10830012"
-        },
         "plos": {
-          "total": 2352,
-          "pdf": 1378,
+          "total": 2360,
+          "pdf": 1385,
           "html": 724,
-          "xml": 250,
+          "xml": 251,
           "url": "https://doi.org/10.1371/journal.pone.0295069"
         },
         "ads": {
@@ -128,8 +122,8 @@
       "adsReads": 0,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2352,
-      "plosPdfs": 1378,
+      "plosTotal": 2360,
+      "plosPdfs": 1385,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -149,7 +143,7 @@
       "sources": {
         "semanticScholar": {
           "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
-          "citations": 10,
+          "citations": 11,
           "influentialCitations": 0,
           "year": 2023,
           "url": "https://www.semanticscholar.org/paper/eafe98571ec6ec98e2eaf8a3feab819b7660c57e"
@@ -183,17 +177,11 @@
           "publisher": "Public Library of Science (PLoS)",
           "url": "https://doi.org/10.1371/journal.pone.0295069"
         },
-        "europePmc": {
-          "title": "Longitudinal brain structure changes in Parkinson's disease: A replication study.",
-          "citations": 8,
-          "pmcid": "PMC10830012",
-          "url": "https://europepmc.org/article/PMC/PMC10830012"
-        },
         "plos": {
-          "total": 2352,
-          "pdf": 1378,
+          "total": 2360,
+          "pdf": 1385,
           "html": 724,
-          "xml": 250,
+          "xml": 251,
           "url": "https://doi.org/10.1371/journal.pone.0295069"
         },
         "ads": {
@@ -374,8 +362,8 @@
       "adsReads": 269,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2015,
-      "plosPdfs": 1363,
+      "plosTotal": 2017,
+      "plosPdfs": 1365,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -430,8 +418,8 @@
           "url": "https://doi.org/10.1371/journal.pone.0296725"
         },
         "plos": {
-          "total": 2015,
-          "pdf": 1363,
+          "total": 2017,
+          "pdf": 1365,
           "html": 356,
           "xml": 296,
           "url": "https://doi.org/10.1371/journal.pone.0296725"
@@ -471,8 +459,8 @@
       "adsReads": 269,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2015,
-      "plosPdfs": 1363,
+      "plosTotal": 2017,
+      "plosPdfs": 1365,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -527,8 +515,8 @@
           "url": "https://doi.org/10.1371/journal.pone.0296725"
         },
         "plos": {
-          "total": 2015,
-          "pdf": 1363,
+          "total": 2017,
+          "pdf": 1365,
           "html": 356,
           "xml": 296,
           "url": "https://doi.org/10.1371/journal.pone.0296725"
@@ -582,7 +570,7 @@
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5391,
+      "dockerPulls": 5392,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
@@ -601,7 +589,7 @@
         },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5391,
+          "pulls": 5392,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
@@ -644,7 +632,7 @@
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5391,
+      "dockerPulls": 5392,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
@@ -663,7 +651,7 @@
         },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5391,
+          "pulls": 5392,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
@@ -706,7 +694,7 @@
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5391,
+      "dockerPulls": 5392,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
@@ -725,7 +713,7 @@
         },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5391,
+          "pulls": 5392,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
