@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T06:07:09.252Z",
+  "generatedAt": "2026-11-21T06:06:54.662Z",
   "papers": {
     "doi:10.1371/journal.pone.0295069": {
       "title": "Longitudinal brain structure changes in Parkinson's disease: a replication study",
@@ -15,17 +15,17 @@
       "publishedDoi": null,
       "isOa": true,
       "oaStatus": "gold",
-      "citations": 11,
+      "citations": 12,
       "influentialCitations": 0,
       "openAlexCitations": 10,
-      "crossrefCitations": 11,
+      "crossrefCitations": 12,
       "dataCiteCitations": null,
       "openCitationsCount": 6,
       "adsReads": 0,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2360,
-      "plosPdfs": 1385,
+      "plosTotal": 2362,
+      "plosPdfs": 1387,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -74,14 +74,14 @@
         },
         "crossref": {
           "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
-          "citations": 11,
+          "citations": 12,
           "referencesCount": 25,
           "publisher": "Public Library of Science (PLoS)",
           "url": "https://doi.org/10.1371/journal.pone.0295069"
         },
         "plos": {
-          "total": 2360,
-          "pdf": 1385,
+          "total": 2362,
+          "pdf": 1387,
           "html": 724,
           "xml": 251,
           "url": "https://doi.org/10.1371/journal.pone.0295069"
@@ -113,17 +113,17 @@
       "publishedDoi": null,
       "isOa": true,
       "oaStatus": "gold",
-      "citations": 11,
+      "citations": 12,
       "influentialCitations": 0,
       "openAlexCitations": 10,
-      "crossrefCitations": 11,
+      "crossrefCitations": 12,
       "dataCiteCitations": null,
       "openCitationsCount": 6,
       "adsReads": 0,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2360,
-      "plosPdfs": 1385,
+      "plosTotal": 2362,
+      "plosPdfs": 1387,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -172,14 +172,14 @@
         },
         "crossref": {
           "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
-          "citations": 11,
+          "citations": 12,
           "referencesCount": 25,
           "publisher": "Public Library of Science (PLoS)",
           "url": "https://doi.org/10.1371/journal.pone.0295069"
         },
         "plos": {
-          "total": 2360,
-          "pdf": 1385,
+          "total": 2362,
+          "pdf": 1387,
           "html": 724,
           "xml": 251,
           "url": "https://doi.org/10.1371/journal.pone.0295069"
@@ -362,8 +362,8 @@
       "adsReads": 269,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2017,
-      "plosPdfs": 1365,
+      "plosTotal": 2018,
+      "plosPdfs": 1366,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -381,13 +381,6 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
-        "semanticScholar": {
-          "title": "Numerical stability of DeepGOPlus inference",
-          "citations": 4,
-          "influentialCitations": 0,
-          "year": 2022,
-          "url": "https://www.semanticscholar.org/paper/30d63561bc582cded3e6cd9c79491608ed0a7669"
-        },
         "openAlex": {
           "title": "Numerical stability of DeepGOPlus inference",
           "citations": 3,
@@ -418,8 +411,8 @@
           "url": "https://doi.org/10.1371/journal.pone.0296725"
         },
         "plos": {
-          "total": 2017,
-          "pdf": 1365,
+          "total": 2018,
+          "pdf": 1366,
           "html": 356,
           "xml": 296,
           "url": "https://doi.org/10.1371/journal.pone.0296725"
@@ -459,8 +452,8 @@
       "adsReads": 269,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2017,
-      "plosPdfs": 1365,
+      "plosTotal": 2018,
+      "plosPdfs": 1366,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -478,13 +471,6 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
-        "semanticScholar": {
-          "title": "Numerical stability of DeepGOPlus inference",
-          "citations": 4,
-          "influentialCitations": 0,
-          "year": 2022,
-          "url": "https://www.semanticscholar.org/paper/30d63561bc582cded3e6cd9c79491608ed0a7669"
-        },
         "openAlex": {
           "title": "Numerical stability of DeepGOPlus inference",
           "citations": 3,
@@ -515,8 +501,8 @@
           "url": "https://doi.org/10.1371/journal.pone.0296725"
         },
         "plos": {
-          "total": 2017,
-          "pdf": 1365,
+          "total": 2018,
+          "pdf": 1366,
           "html": 356,
           "xml": 296,
           "url": "https://doi.org/10.1371/journal.pone.0296725"
@@ -570,7 +556,7 @@
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5392,
+      "dockerPulls": 5435,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
@@ -589,7 +575,7 @@
         },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5392,
+          "pulls": 5435,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
@@ -632,7 +618,7 @@
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5392,
+      "dockerPulls": 5435,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
@@ -651,7 +637,7 @@
         },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5392,
+          "pulls": 5435,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
@@ -694,7 +680,7 @@
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5392,
+      "dockerPulls": 5435,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
@@ -713,7 +699,7 @@
         },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5392,
+          "pulls": 5435,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
