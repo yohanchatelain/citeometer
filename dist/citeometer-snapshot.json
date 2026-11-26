@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-25T06:06:59.217Z",
+  "generatedAt": "2026-11-26T06:07:55.941Z",
   "papers": {
     "doi:10.1371/journal.pone.0295069": {
       "title": "Longitudinal brain structure changes in Parkinson's disease: a replication study",
@@ -24,8 +24,8 @@
       "adsReads": 0,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2375,
-      "plosPdfs": 1398,
+      "plosTotal": 2377,
+      "plosPdfs": 1399,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -43,13 +43,6 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
-        "semanticScholar": {
-          "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
-          "citations": 11,
-          "influentialCitations": 0,
-          "year": 2023,
-          "url": "https://www.semanticscholar.org/paper/eafe98571ec6ec98e2eaf8a3feab819b7660c57e"
-        },
         "openAlex": {
           "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
           "citations": 11,
@@ -86,10 +79,10 @@
           "url": "https://europepmc.org/article/PMC/PMC10830012"
         },
         "plos": {
-          "total": 2375,
-          "pdf": 1398,
+          "total": 2377,
+          "pdf": 1399,
           "html": 724,
-          "xml": 253,
+          "xml": 254,
           "url": "https://doi.org/10.1371/journal.pone.0295069"
         },
         "ads": {
@@ -128,8 +121,8 @@
       "adsReads": 0,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2375,
-      "plosPdfs": 1398,
+      "plosTotal": 2377,
+      "plosPdfs": 1399,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -147,13 +140,6 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
-        "semanticScholar": {
-          "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
-          "citations": 11,
-          "influentialCitations": 0,
-          "year": 2023,
-          "url": "https://www.semanticscholar.org/paper/eafe98571ec6ec98e2eaf8a3feab819b7660c57e"
-        },
         "openAlex": {
           "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
           "citations": 11,
@@ -190,10 +176,10 @@
           "url": "https://europepmc.org/article/PMC/PMC10830012"
         },
         "plos": {
-          "total": 2375,
-          "pdf": 1398,
+          "total": 2377,
+          "pdf": 1399,
           "html": 724,
-          "xml": 253,
+          "xml": 254,
           "url": "https://doi.org/10.1371/journal.pone.0295069"
         },
         "ads": {
@@ -251,13 +237,6 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
-        "semanticScholar": {
-          "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
-          "citations": 2,
-          "influentialCitations": 0,
-          "year": 2026,
-          "url": "https://www.semanticscholar.org/paper/0110396e7d85c64314ad096bfcdca36e02301b0a"
-        },
         "openAlex": {
           "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
           "citations": 2,
@@ -329,13 +308,6 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
-        "semanticScholar": {
-          "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
-          "citations": 2,
-          "influentialCitations": 0,
-          "year": 2026,
-          "url": "https://www.semanticscholar.org/paper/0110396e7d85c64314ad096bfcdca36e02301b0a"
-        },
         "openAlex": {
           "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
           "citations": 2,
@@ -388,8 +360,8 @@
       "adsReads": 269,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2034,
-      "plosPdfs": 1379,
+      "plosTotal": 2036,
+      "plosPdfs": 1381,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -450,8 +422,8 @@
           "url": "https://europepmc.org/article/PMC/PMC10824456"
         },
         "plos": {
-          "total": 2034,
-          "pdf": 1379,
+          "total": 2036,
+          "pdf": 1381,
           "html": 356,
           "xml": 299,
           "url": "https://doi.org/10.1371/journal.pone.0296725"
@@ -491,8 +463,8 @@
       "adsReads": 269,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2034,
-      "plosPdfs": 1379,
+      "plosTotal": 2036,
+      "plosPdfs": 1381,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -553,8 +525,8 @@
           "url": "https://europepmc.org/article/PMC/PMC10824456"
         },
         "plos": {
-          "total": 2034,
-          "pdf": 1379,
+          "total": 2036,
+          "pdf": 1381,
           "html": 356,
           "xml": 299,
           "url": "https://doi.org/10.1371/journal.pone.0296725"
@@ -608,7 +580,7 @@
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5470,
+      "dockerPulls": 5475,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
@@ -627,7 +599,7 @@
         },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5470,
+          "pulls": 5475,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
@@ -670,7 +642,7 @@
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5470,
+      "dockerPulls": 5475,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
@@ -689,7 +661,7 @@
         },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5470,
+          "pulls": 5475,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
@@ -732,7 +704,7 @@
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5470,
+      "dockerPulls": 5475,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
@@ -751,7 +723,7 @@
         },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5470,
+          "pulls": 5475,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
