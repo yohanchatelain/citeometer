@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-27T06:07:44.516Z",
+  "generatedAt": "2026-11-28T06:06:52.417Z",
   "papers": {
     "doi:10.1371/journal.pone.0295069": {
       "title": "Longitudinal brain structure changes in Parkinson's disease: a replication study",
@@ -24,8 +24,8 @@
       "adsReads": 0,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2378,
-      "plosPdfs": 1400,
+      "plosTotal": 2388,
+      "plosPdfs": 1407,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -43,6 +43,13 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
+        "semanticScholar": {
+          "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
+          "citations": 11,
+          "influentialCitations": 0,
+          "year": 2023,
+          "url": "https://www.semanticscholar.org/paper/eafe98571ec6ec98e2eaf8a3feab819b7660c57e"
+        },
         "openAlex": {
           "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
           "citations": 11,
@@ -79,9 +86,9 @@
           "url": "https://europepmc.org/article/PMC/PMC10830012"
         },
         "plos": {
-          "total": 2378,
-          "pdf": 1400,
-          "html": 724,
+          "total": 2388,
+          "pdf": 1407,
+          "html": 727,
           "xml": 254,
           "url": "https://doi.org/10.1371/journal.pone.0295069"
         },
@@ -121,8 +128,8 @@
       "adsReads": 0,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2378,
-      "plosPdfs": 1400,
+      "plosTotal": 2388,
+      "plosPdfs": 1407,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -140,6 +147,13 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
+        "semanticScholar": {
+          "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
+          "citations": 11,
+          "influentialCitations": 0,
+          "year": 2023,
+          "url": "https://www.semanticscholar.org/paper/eafe98571ec6ec98e2eaf8a3feab819b7660c57e"
+        },
         "openAlex": {
           "title": "Longitudinal brain structure changes in Parkinson’s disease: A replication study",
           "citations": 11,
@@ -176,9 +190,9 @@
           "url": "https://europepmc.org/article/PMC/PMC10830012"
         },
         "plos": {
-          "total": 2378,
-          "pdf": 1400,
-          "html": 724,
+          "total": 2388,
+          "pdf": 1407,
+          "html": 727,
           "xml": 254,
           "url": "https://doi.org/10.1371/journal.pone.0295069"
         },
@@ -207,13 +221,13 @@
       "npm": null,
       "adsBibcode": "2026arXiv261001889C",
       "publishedDoi": null,
-      "isOa": true,
-      "oaStatus": "green",
+      "isOa": false,
+      "oaStatus": null,
       "citations": 2,
       "influentialCitations": 0,
-      "openAlexCitations": 2,
+      "openAlexCitations": null,
       "crossrefCitations": null,
-      "dataCiteCitations": null,
+      "dataCiteCitations": 0,
       "openCitationsCount": null,
       "adsReads": 831,
       "biorxivPdfs": null,
@@ -237,25 +251,25 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
-        "openAlex": {
+        "semanticScholar": {
           "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
           "citations": 2,
-          "isOa": true,
-          "oaStatus": "green",
+          "influentialCitations": 0,
           "year": 2026,
-          "countsByYear": [
-            {
-              "year": 2026,
-              "cited_by_count": 2
-            }
-          ],
-          "url": "https://doi.org/10.48550/arxiv.2610.01889"
+          "url": "https://www.semanticscholar.org/paper/0110396e7d85c64314ad096bfcdca36e02301b0a"
         },
         "ads": {
           "recentReads": 831,
           "citations": null,
           "bibcode": "2026arXiv261001889C",
           "url": "https://ui.adsabs.harvard.edu/abs/2026arXiv261001889C/metrics"
+        },
+        "dataCite": {
+          "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
+          "citations": 0,
+          "views": 0,
+          "downloads": 0,
+          "url": "https://arxiv.org/abs/2610.01889"
         }
       }
     },
@@ -271,13 +285,13 @@
       "npm": null,
       "adsBibcode": "2026arXiv261001889C",
       "publishedDoi": null,
-      "isOa": true,
-      "oaStatus": "green",
+      "isOa": false,
+      "oaStatus": null,
       "citations": 2,
       "influentialCitations": 0,
-      "openAlexCitations": 2,
+      "openAlexCitations": null,
       "crossrefCitations": null,
-      "dataCiteCitations": null,
+      "dataCiteCitations": 0,
       "openCitationsCount": null,
       "adsReads": 831,
       "biorxivPdfs": null,
@@ -301,25 +315,25 @@
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
-        "openAlex": {
+        "semanticScholar": {
           "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
           "citations": 2,
-          "isOa": true,
-          "oaStatus": "green",
+          "influentialCitations": 0,
           "year": 2026,
-          "countsByYear": [
-            {
-              "year": 2026,
-              "cited_by_count": 2
-            }
-          ],
-          "url": "https://doi.org/10.48550/arxiv.2610.01889"
+          "url": "https://www.semanticscholar.org/paper/0110396e7d85c64314ad096bfcdca36e02301b0a"
         },
         "ads": {
           "recentReads": 831,
           "citations": null,
           "bibcode": "2026arXiv261001889C",
           "url": "https://ui.adsabs.harvard.edu/abs/2026arXiv261001889C/metrics"
+        },
+        "dataCite": {
+          "title": "Stochastic Rounding in Low-Precision Transformer Inference: A Variable-Precision Emulation Study of a Small GPT-2",
+          "citations": 0,
+          "views": 0,
+          "downloads": 0,
+          "url": "https://arxiv.org/abs/2610.01889"
         }
       }
     },
@@ -346,8 +360,8 @@
       "adsReads": 269,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2040,
-      "plosPdfs": 1385,
+      "plosTotal": 2042,
+      "plosPdfs": 1387,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -402,8 +416,8 @@
           "url": "https://doi.org/10.1371/journal.pone.0296725"
         },
         "plos": {
-          "total": 2040,
-          "pdf": 1385,
+          "total": 2042,
+          "pdf": 1387,
           "html": 356,
           "xml": 299,
           "url": "https://doi.org/10.1371/journal.pone.0296725"
@@ -443,8 +457,8 @@
       "adsReads": 269,
       "biorxivPdfs": null,
       "biorxivViews": null,
-      "plosTotal": 2040,
-      "plosPdfs": 1385,
+      "plosTotal": 2042,
+      "plosPdfs": 1387,
       "zenodoDownloads": null,
       "zenodoViews": null,
       "dataCiteDownloads": null,
@@ -499,8 +513,8 @@
           "url": "https://doi.org/10.1371/journal.pone.0296725"
         },
         "plos": {
-          "total": 2040,
-          "pdf": 1385,
+          "total": 2042,
+          "pdf": 1387,
           "html": 356,
           "xml": 299,
           "url": "https://doi.org/10.1371/journal.pone.0296725"
@@ -547,33 +561,21 @@
       "dataCiteDownloads": null,
       "dataCiteViews": null,
       "githubStars": 104,
-      "githubForks": 29,
-      "githubDownloads": 50,
+      "githubForks": null,
+      "githubDownloads": null,
       "githubClones": 979,
       "githubUniqueClones": 254,
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5476,
+      "dockerPulls": 5478,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
-        "github": {
-          "title": "verificarlo/verificarlo",
-          "description": "A tool for debugging and assessing floating point precision and reproducibility.",
-          "stars": 104,
-          "forks": 29,
-          "downloads": 50,
-          "clones": null,
-          "uniqueClones": null,
-          "views": null,
-          "uniqueViews": null,
-          "url": "https://github.com/verificarlo/verificarlo"
-        },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5476,
+          "pulls": 5478,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
@@ -609,33 +611,21 @@
       "dataCiteDownloads": null,
       "dataCiteViews": null,
       "githubStars": 104,
-      "githubForks": 29,
-      "githubDownloads": 50,
+      "githubForks": null,
+      "githubDownloads": null,
       "githubClones": 979,
       "githubUniqueClones": 254,
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5476,
+      "dockerPulls": 5478,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
-        "github": {
-          "title": "verificarlo/verificarlo",
-          "description": "A tool for debugging and assessing floating point precision and reproducibility.",
-          "stars": 104,
-          "forks": 29,
-          "downloads": 50,
-          "clones": null,
-          "uniqueClones": null,
-          "views": null,
-          "uniqueViews": null,
-          "url": "https://github.com/verificarlo/verificarlo"
-        },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5476,
+          "pulls": 5478,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
@@ -671,33 +661,21 @@
       "dataCiteDownloads": null,
       "dataCiteViews": null,
       "githubStars": 104,
-      "githubForks": 29,
-      "githubDownloads": 50,
+      "githubForks": null,
+      "githubDownloads": null,
       "githubClones": 979,
       "githubUniqueClones": 254,
       "githubViews": 89,
       "githubUniqueViews": 65,
       "githubRepos": null,
-      "dockerPulls": 5476,
+      "dockerPulls": 5478,
       "pypiDownloads": null,
       "pypiMonthly": null,
       "npmDownloads": null,
       "sources": {
-        "github": {
-          "title": "verificarlo/verificarlo",
-          "description": "A tool for debugging and assessing floating point precision and reproducibility.",
-          "stars": 104,
-          "forks": 29,
-          "downloads": 50,
-          "clones": null,
-          "uniqueClones": null,
-          "views": null,
-          "uniqueViews": null,
-          "url": "https://github.com/verificarlo/verificarlo"
-        },
         "docker": {
           "title": "verificarlo/verificarlo",
-          "pulls": 5476,
+          "pulls": 5478,
           "stars": 1,
           "url": "https://hub.docker.com/r/verificarlo/verificarlo"
         }
